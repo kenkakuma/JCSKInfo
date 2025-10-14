@@ -1,0 +1,36 @@
+{
+  "common": {
+    "readMore": "続きを読む",
+    "readingTime": "分で読めます",
+    "publishedOn": "公開日",
+    "tags": "タグ",
+    "share": "共有",
+    "relatedPosts": "関連記事",
+    "allPosts": "すべての記事",
+    "noPosts": "記事がありません",
+    "search": "検索",
+    "darkMode": "ダークモード",
+    "lightMode": "ライトモード"
+  },
+  "nav": {
+    "home": "ホーム",
+    "posts": "記事",
+    "about": "概要"
+  },
+  "home": {
+    "title": "JetCode·SKIへようこそ",
+    "subtitle": "最新のテクノロジー製品情報とレビュー",
+    "latestPosts": "最新記事"
+  },
+  "post": {
+    "tableOfContents": "目次",
+    "buyNow": "今すぐ購入",
+    "checkPrice": "価格を確認",
+    "comparePrice": "価格比較",
+    "affiliateDisclosure": "この記事にはアフィリエイトリンクが含まれています。これらのリンクを通じて購入された場合、手数料を受け取ることがあります。"
+  },
+  "seo": {
+    "defaultTitle": "JetCode·SKI - テクノロジー情報",
+    "defaultDescription": "最新のテクノロジー製品レビューと情報"
+  }
+}

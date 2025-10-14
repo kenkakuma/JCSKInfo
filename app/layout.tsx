@@ -1,0 +1,54 @@
+import './globals.css'
+import type { Metadata } from 'next'
+import { Inter, Noto_Serif, JetBrains_Mono } from 'next/font/google'
+
+const inter = Inter({
+  subsets: ['latin', 'vietnamese'],
+  weight: ['400', '800'],
+  variable: '--font-inter',
+  display: 'swap',
+})
+
+const notoSerif = Noto_Serif({
+  subsets: ['latin', 'vietnamese'],
+  weight: ['400', '600', '700'],
+  variable: '--font-noto-serif',
+  display: 'swap',
+})
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  weight: ['100', '400', '500', '600', '700', '800'],
+  style: ['normal', 'italic'],
+  variable: '--font-jetbrains-mono',
+  display: 'swap',
+})
+
+export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
+}
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="ja" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                const theme = localStorage.getItem('theme') || 
+                  (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+                document.documentElement.classList.toggle('dark', theme === 'dark');
+              } catch (e) {}
+            `,
+          }}
+        />
+      </head>
+      <body
+        className={`${inter.variable} ${notoSerif.variable} ${jetbrainsMono.variable} font-sans`}
+      >
+        {children}
+      </body>
+    </html>
+  )
+}

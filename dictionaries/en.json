@@ -1,0 +1,36 @@
+{
+  "common": {
+    "readMore": "Read more",
+    "readingTime": "min read",
+    "publishedOn": "Published on",
+    "tags": "Tags",
+    "share": "Share",
+    "relatedPosts": "Related posts",
+    "allPosts": "All posts",
+    "noPosts": "No posts yet",
+    "search": "Search",
+    "darkMode": "Dark mode",
+    "lightMode": "Light mode"
+  },
+  "nav": {
+    "home": "Home",
+    "posts": "Posts",
+    "about": "About"
+  },
+  "home": {
+    "title": "Welcome to JetCode·SKI",
+    "subtitle": "Latest technology product information and reviews",
+    "latestPosts": "Latest posts"
+  },
+  "post": {
+    "tableOfContents": "Table of Contents",
+    "buyNow": "Buy now",
+    "checkPrice": "Check price",
+    "comparePrice": "Compare price",
+    "affiliateDisclosure": "This article contains affiliate links. We may receive a commission when you make a purchase through these links."
+  },
+  "seo": {
+    "defaultTitle": "JetCode·SKI - Technology Information",
+    "defaultDescription": "Latest technology product reviews and information"
+  }
+}

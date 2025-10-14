@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>清除点赞数据 - Clear Likes Data</title>
+    <style>
+      body {
+        font-family:
+          system-ui,
+          -apple-system,
+          sans-serif;
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        background: #f5f5f5;
+      }
+      .container {
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        color: #333;
+        margin-bottom: 20px;
+      }
+      button {
+        background: #ff4444;
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 16px;
+        margin: 10px 5px;
+      }
+      button:hover {
+        background: #cc0000;
+      }
+      .success {
+        background: #4caf50;
+        color: white;
+        padding: 15px;
+        border-radius: 6px;
+        margin-top: 20px;
+        display: none;
+      }
+      .info {
+        background: #2196f3;
+        color: white;
+        padding: 15px;
+        border-radius: 6px;
+        margin-top: 20px;
+      }
+      .back-btn {
+        background: #2196f3;
+      }
+      .back-btn:hover {
+        background: #1976d2;
+      }
+      pre {
+        background: #f5f5f5;
+        padding: 10px;
+        border-radius: 4px;
+        overflow-x: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>🔧 清除点赞数据工具</h1>
+
+      <div class="info">
+        <strong>ℹ️ 说明：</strong><br />
+        由于系统升级，点赞数据存储方式已更改。<br />
+        从 <code>_id</code> 改为使用 <code>translationKey</code>。<br />
+        点击下方按钮清除旧数据，然后重新测试点赞功能。
+      </div>
+
+      <div style="margin-top: 20px">
+        <h3>当前数据：</h3>
+        <pre id="currentData">加载中...</pre>
+      </div>
+
+      <button onclick="clearLikesData()">清除所有点赞数据</button>
+      <button class="back-btn" onclick="window.location.href='/ja'">返回首页</button>
+
+      <div class="success" id="successMsg">✅ 点赞数据已清除！请返回首页重新测试。</div>
+    </div>
+
+    <script>
+      function displayCurrentData() {
+        const likes = localStorage.getItem('post_likes')
+        const userLikes = localStorage.getItem('user_liked_posts')
+        const data = {
+          post_likes: likes ? JSON.parse(likes) : {},
+          user_liked_posts: userLikes ? JSON.parse(userLikes) : [],
+        }
+        document.getElementById('currentData').textContent = JSON.stringify(data, null, 2)
+      }
+
+      function clearLikesData() {
+        localStorage.removeItem('post_likes')
+        localStorage.removeItem('user_liked_posts')
+        document.getElementById('successMsg').style.display = 'block'
+        displayCurrentData()
+        setTimeout(() => {
+          window.location.href = '/ja'
+        }, 2000)
+      }
+
+      // 页面加载时显示当前数据
+      displayCurrentData()
+    </script>
+  </body>
+</html>

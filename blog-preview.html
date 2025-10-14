@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新闻聚合 - 预览</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-950 text-white">
+    <div class="container mx-auto px-4 py-6 max-w-7xl">
+        <!-- 顶部导航 -->
+        <div class="flex items-center justify-between mb-8">
+            <div class="flex items-center gap-4">
+                <h1 class="text-3xl font-bold">Discover</h1>
+                <div class="flex gap-2">
+                    <button class="px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded-lg text-sm transition">为您</button>
+                    <button class="px-4 py-2 hover:bg-gray-800 rounded-lg text-sm transition">订阅</button>
+                    <button class="px-4 py-2 hover:bg-gray-800 rounded-lg text-sm transition">主题</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <!-- 左侧主内容区 -->
+            <div class="lg:col-span-2">
+                <!-- 特色文章 -->
+                <div class="bg-gray-900 rounded-2xl overflow-hidden hover:ring-2 hover:ring-blue-500 transition-all duration-300 mb-6 cursor-pointer group">
+                    <div class="grid md:grid-cols-2 gap-6 p-6">
+                        <!-- 左侧文字内容 -->
+                        <div class="flex flex-col justify-between">
+                            <div>
+                                <h2 class="text-2xl md:text-3xl font-bold mb-4 group-hover:text-blue-400 transition-colors">
+                                    OpenAI与博通合作开发定制AI芯片
+                                </h2>
+                                
+                                <div class="flex items-center gap-2 text-sm text-gray-400 mb-4">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <polyline points="12 6 12 12 16 14"></polyline>
+                                    </svg>
+                                    <span>6分钟前</span>
+                                </div>
+                                
+                                <p class="text-gray-300 leading-relaxed">
+                                    该协议将在四年内创建10吉瓦的计算能力,首批芯片预计于2026年底开始。
+                                </p>
+                            </div>
+                            
+                            <!-- 底部交互栏 -->
+                            <div class="flex items-center justify-between mt-6 pt-4 border-t border-gray-800">
+                                <div class="flex items-center gap-4">
+                                    <button class="flex items-center gap-2 text-gray-400 hover:text-red-500 transition-colors">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                        </svg>
+                                        <span class="text-sm">37</span>
+                                    </button>
+                                </div>
+                                
+                                <button class="text-gray-400 hover:text-white transition-colors">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <circle cx="12" cy="12" r="1"></circle>
+                                        <circle cx="19" cy="12" r="1"></circle>
+                                        <circle cx="5" cy="12" r="1"></circle>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- 右侧图片 -->
+                        <div class="relative h-64 md:h-full rounded-xl overflow-hidden bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
+                            <div class="text-6xl font-bold text-white opacity-20">OpenAI</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 文章网格 -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <!-- 文章卡片 1 -->
+                    <div class="group cursor-pointer">
+                        <div class="bg-gray-900 rounded-xl overflow-hidden hover:ring-2 hover:ring-blue-500 transition-all duration-300 h-full">
+                            <div class="relative h-48 bg-gradient-to-br from-red-500 to-orange-500">
+                                <div class="absolute top-3 left-3 flex items-center gap-2 bg-black/60 backdrop-blur-sm rounded-full px-3 py-1.5">
+                                    <div class="w-5 h-5 rounded-full bg-gray-700"></div>
+                                    <span class="text-xs text-white">66 浏览</span>
+                                </div>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="text-base font-medium mb-3 group-hover:text-blue-400 transition-colors line-clamp-2">
+                                    特朗普称习近平为"值得尊敬的领导人",两示强硬美系
+                                </h3>
+                                <div class="flex items-center justify-between text-gray-400 text-sm">
+                                    <button class="hover:text-red-500 transition-colors">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                        </svg>
+                                    </button>
+                                    <span class="text-xs">12分钟前</span>
+                                    <button class="hover:text-white transition-colors">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <circle cx="12" cy="12" r="1"></circle>
+                                            <circle cx="19" cy="12" r="1"></circle>
+                                            <circle cx="5" cy="12" r="1"></circle>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 文章卡片 2 -->
+                    <div class="group cursor-pointer">
+                        <div class="bg-gray-900 rounded-xl overflow-hidden hover:ring-2 hover:ring-blue-500 transition-all duration-300 h-full">
+                            <div class="relative h-48 bg-gradient-to-br from-yellow-400 to-orange-500">
+                                <div class="absolute top-3 left-3 flex items-center gap-2 bg-black/60 backdrop-blur-sm rounded-full px-3 py-1.5">
+                                    <div class="w-5 h-5 rounded-full bg-gray-700"></div>
+                                    <span class="text-xs text-white">42 浏览</span>
+                                </div>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="text-base font-medium mb-3 group-hover:text-blue-400 transition-colors line-clamp-2">
+                                    大阪·关西世博会参观人数突破2500万创史上最大盛会
+                                </h3>
+                                <div class="flex items-center justify-between text-gray-400 text-sm">
+                                    <button class="hover:text-red-500 transition-colors">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                        </svg>
+                                    </button>
+                                    <span class="text-xs">18分钟前</span>
+                                    <button class="hover:text-white transition-colors">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <circle cx="12" cy="12" r="1"></circle>
+                                            <circle cx="19" cy="12" r="1"></circle>
+                                            <circle cx="5" cy="12" r="1"></circle>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 文章卡片 3 -->
+                    <div class="group cursor-pointer">
+                        <div class="bg-gray-900 rounded-xl overflow-hidden hover:ring-2 hover:ring-blue-500 transition-all duration-300 h-full">
+                            <div class="relative h-48 bg-gradient-to-br from-blue-500 to-cyan-500">
+                                <div class="absolute top-3 left-3 flex items-center gap-2 bg-black/60 backdrop-blur-sm rounded-full px-3 py-1.5">
+                                    <div class="w-5 h-5 rounded-full bg-gray-700"></div>
+                                    <span class="text-xs text-white">22 浏览</span>
+                                </div>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="text-base font-medium mb-3 group-hover:text-blue-400 transition-colors line-clamp-2">
+                                    Salesforce推出具备语音功能的AI代理
+                                </h3>
+                                <div class="flex items-center justify-between text-gray-400 text-sm">
+                                    <button class="hover:text-red-500 transition-colors">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                        </svg>
+                                    </button>
+                                    <span class="text-xs">25分钟前</span>
+                                    <button class="hover:text-white transition-colors">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <circle cx="12" cy="12" r="1"></circle>
+                                            <circle cx="19" cy="12" r="1"></circle>
+                                            <circle cx="5" cy="12" r="1"></circle>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 文章卡片 4 - 小卡片 -->
+                    <div class="group cursor-pointer">
+                        <div class="bg-gray-900 rounded-xl overflow-hidden hover:ring-2 hover:ring-blue-500 transition-all duration-300 h-full">
+                            <div class="relative h-40 bg-gradient-to-br from-pink-500 to-red-500 flex items-center justify-center">
+                                <div class="text-white text-center">
+                                    <div class="text-4xl font-bold mb-2">25889.48</div>
+                                    <div class="text-sm text-red-300">-400.84 ↓</div>
+                                </div>
+                                <div class="absolute top-3 left-3 flex items-center gap-2 bg-black/60 backdrop-blur-sm rounded-full px-3 py-1.5">
+                                    <span class="text-xs text-white">89 浏览</span>
+                                </div>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="text-sm font-medium mb-2 group-hover:text-blue-400 transition-colors line-clamp-2">
+                                    恒生指数跌超15%
+                                </h3>
+                                <div class="flex items-center justify-between text-gray-400 text-xs">
+                                    <span>32分钟前</span>
+                                    <button class="hover:text-white transition-colors">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <circle cx="12" cy="12" r="1"></circle>
+                                            <circle cx="19" cy="12" r="1"></circle>
+                                            <circle cx="5" cy="12" r="1"></circle>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 文章卡片 5 - 纯文字卡片 -->
+                    <div class="md:col-span-2 group cursor-pointer">
+                        <div class="bg-gray-900 rounded-xl p-6 hover:ring-2 hover:ring-blue-500 transition-all duration-300">
+                            <h3 class="text-xl font-bold mb-3 group-hover:text-blue-400 transition-colors">
+                                随着美中贸易战升级,亚洲股市暴跌
+                            </h3>
+                            
+                            <div class="flex items-center gap-2 text-sm text-gray-400 mb-4">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                <span>45分钟前</span>
+                            </div>
+                            
+                            <p class="text-gray-300 mb-4 leading-relaxed">
+                                在朝鲜威胁对中国商品征100%额外关税以回击中国商品进口关税后,香港和中国股市大幅下跌。
+                            </p>
+                            
+                            <div class="flex items-center justify-between pt-4 border-t border-gray-800">
+                                <div class="flex items-center gap-4">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-6 h-6 rounded-full bg-gray-700"></div>
+                                        <span class="text-sm text-gray-400">53 浏览</span>
+                                    </div>
+                                    
+                                    <button class="flex items-center gap-2 text-gray-400 hover:text-red-500 transition-colors">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                
+                                <button class="text-gray-400 hover:text-white transition-colors">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <circle cx="12" cy="12" r="1"></circle>
+                                        <circle cx="19" cy="12" r="1"></circle>
+                                        <circle cx="5" cy="12" r="1"></circle>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 文章卡片 6 - 中等卡片 -->
+                    <div class="md:col-span-2 group cursor-pointer">
+                        <div class="bg-gray-900 rounded-xl overflow-hidden hover:ring-2 hover:ring-blue-500 transition-all duration-300">
+                            <div class="grid md:grid-cols-2 gap-4 p-4">
+                                <div class="relative h-48 rounded-lg bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center overflow-hidden">
+                                    <div class="text-white text-5xl font-bold opacity-30">Wayve</div>
+                                </div>
+                                <div class="flex flex-col justify-between">
+                                    <div>
+                                        <h3 class="text-lg font-bold mb-2 group-hover:text-blue-400 transition-colors">
+                                            Wayve正在与微软、软银洽谈筹集20亿美元
+                                        </h3>
+                                        <p class="text-sm text-gray-300 line-clamp-3">
+                                            这家受到软银集团支持的伦敦自动驾驶初创公司估值为80亿美元,正寻求作为欧洲AI竞赛领导者的地位。
+                                        </p>
+                                    </div>
+                                    <div class="flex items-center justify-between mt-4">
+                                        <span class="text-xs text-gray-400">36 浏览 • 1小时前</span>
+                                        <button class="text-gray-400 hover:text-white transition-colors">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <circle cx="12" cy="12" r="1"></circle>
+                                                <circle cx="19" cy="12" r="1"></circle>
+                                                <circle cx="5" cy="12" r="1"></circle>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 更多文章卡片 -->
+                    <div class="group cursor-pointer">
+                        <div class="bg-gray-900 rounded-xl overflow-hidden hover:ring-2 hover:ring-blue-500 transition-all duration-300 h-full">
+                            <div class="relative h-48 bg-gradient-to-br from-green-500 to-emerald-600">
+                                <div class="absolute top-3 left-3 flex items-center gap-2 bg-black/60 backdrop-blur-sm rounded-full px-3 py-1.5">
+                                    <div class="w-5 h-5 rounded-full bg-gray-700"></div>
+                                    <span class="text-xs text-white">47 浏览</span>
+                                </div>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="text-base font-medium mb-3 group-hover:text-blue-400 transition-colors line-clamp-2">
+                                    哈马斯在加沙火灾后释放首批人质
+                                </h3>
+                                <div class="flex items-center justify-between text-gray-400 text-sm">
+                                    <button class="hover:text-red-500 transition-colors">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                        </svg>
+                                    </button>
+                                    <span class="text-xs">2小时前</span>
+                                    <button class="hover:text-white transition-colors">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <circle cx="12" cy="12" r="1"></circle>
+                                            <circle cx="19" cy="12" r="1"></circle>
+                                            <circle cx="5" cy="12" r="1"></circle>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="group cursor-pointer">
+                        <div class="bg-gray-900 rounded-xl overflow-hidden hover:ring-2 hover:ring-blue-500 transition-all duration-300 h-full">
+                            <div class="relative h-48 bg-gradient-to-br from-orange-500 to-amber-600">
+                                <div class="absolute top-3 left-3 flex items-center gap-2 bg-black/60 backdrop-blur-sm rounded-full px-3 py-1.5">
+                                    <div class="w-5 h-5 rounded-full bg-gray-700"></div>
+                                    <span class="text-xs text-white">52 浏览</span>
+                                </div>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="text-base font-medium mb-3 group-hover:text-blue-400 transition-colors line-clamp-2">
+                                    特朗普宣布加入战争已经结果,而内塔尼亚胡中立
+                                </h3>
+                                <div class="flex items-center justify-between text-gray-400 text-sm">
+                                    <button class="hover:text-red-500 transition-colors">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                        </svg>
+                                    </button>
+                                    <span class="text-xs">3小时前</span>
+                                    <button class="hover:text-white transition-colors">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <circle cx="12" cy="12" r="1"></circle>
+                                            <circle cx="19" cy="12" r="1"></circle>
+                                            <circle cx="5" cy="12" r="1"></circle>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="group cursor-pointer">
+                        <div class="bg-gray-900 rounded-xl overflow-hidden hover:ring-2 hover:ring-blue-500 transition-all duration-300 h-full">
+                            <div class="relative h-48 bg-gradient-to-br from-teal-500 to-cyan-600">
+                                <div class="absolute top-3 left-3 flex items-center gap-2 bg-black/60 backdrop-blur-sm rounded-full px-3 py-1.5">
+                                    <div class="w-5 h-5 rounded-full bg-gray-700"></div>
+                                    <span class="text-xs text-white">39 浏览</span>
+                                </div>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="text-base font-medium mb-3 group-hover:text-blue-400 transition-colors line-clamp-2">
+                                    中国在贸易战升级之际主导清洁能源领域
+                                </h3>
+                                <div class="flex items-center justify-between text-gray-400 text-sm">
+                                    <button class="hover:text-red-500 transition-colors">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                        </svg>
+                                    </button>
+                                    <span class="text-xs">3小时前</span>
+                                    <button class="hover:text-white transition-colors">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <circle cx="12" cy="12" r="1"></circle>
+                                            <circle cx="19" cy="12" r="1"></circle>
+                                            <circle cx="5" cy="12" r="1"></circle>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 最后一个大卡片 -->
+                    <div class="md:col-span-3 group cursor-pointer">
+                        <div class="bg-gray-900 rounded-xl p-6 hover:ring-2 hover:ring-blue-500 transition-all duration-300">
+                            <h3 class="text-xl font-bold mb-3 group-hover:text-blue-400 transition-colors">
+                                印度初创公司一周内融资2.85亿美元,增长78%
+                            </h3>
+                            
+                            <div class="flex items-center gap-2 text-sm text-gray-400 mb-4">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                <span>4小时前</span>
+                            </div>
+                            
+                            <p class="text-gray-300 mb-4 leading-relaxed">
+                                金融科技平台Dhani赢1.2亿美元的B轮融资引领了这场增长,促使整数近乎翻倍财计倍值过1.2亿美元。
+                            </p>
+                            
+                            <div class="flex items-center justify-between pt-4 border-t border-gray-800">
+                                <div class="flex items-center gap-4">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-6 h-6 rounded-full bg-gray-700"></div>
+                                        <span class="text-sm text-gray-400">41 浏览</span>
+                                    </div>
+                                    
+                                    <button class="flex items-center gap-2 text-gray-400 hover:text-red-500 transition-colors">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                
+                                <button class="text-gray-400 hover:text-white transition-colors">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <circle cx="12" cy="12" r="1"></circle>
+                                        <circle cx="19" cy="12" r="1"></circle>
+                                        <circle cx="5" cy="12" r="1"></circle>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 右侧边栏占位 -->
+            <div class="hidden lg:block">
+                <div class="sticky top-6 bg-gray-900 rounded-xl p-6 h-96">
+                    <div class="text-center text-gray-400 text-sm">
+                        <h3 class="font-bold text-lg mb-4 text-white">右侧工具栏区域</h3>
+                        <p class="mb-2">(用户已实现)</p>
+                        <div class="mt-6 space-y-2">
+                            <div class="h-8 bg-gray-800 rounded"></div>
+                            <div class="h-8 bg-gray-800 rounded"></div>
+                            <div class="h-8 bg-gray-800 rounded"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

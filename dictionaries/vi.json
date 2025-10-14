@@ -1,0 +1,36 @@
+{
+  "common": {
+    "readMore": "Đọc thêm",
+    "readingTime": "phút đọc",
+    "publishedOn": "Xuất bản vào",
+    "tags": "Thẻ",
+    "share": "Chia sẻ",
+    "relatedPosts": "Bài viết liên quan",
+    "allPosts": "Tất cả bài viết",
+    "noPosts": "Chưa có bài viết nào",
+    "search": "Tìm kiếm",
+    "darkMode": "Chế độ tối",
+    "lightMode": "Chế độ sáng"
+  },
+  "nav": {
+    "home": "Trang chủ",
+    "posts": "Bài viết",
+    "about": "Giới thiệu"
+  },
+  "home": {
+    "title": "Chào mừng đến với JetCode·SKI",
+    "subtitle": "Thông tin và đánh giá sản phẩm công nghệ mới nhất",
+    "latestPosts": "Bài viết mới nhất"
+  },
+  "post": {
+    "tableOfContents": "Mục lục",
+    "buyNow": "Mua ngay",
+    "checkPrice": "Kiểm tra giá",
+    "comparePrice": "So sánh giá",
+    "affiliateDisclosure": "Bài viết này có chứa liên kết liên kết. Chúng tôi có thể nhận được hoa hồng khi bạn mua hàng thông qua các liên kết này."
+  },
+  "seo": {
+    "defaultTitle": "JetCode·SKI - Thông tin công nghệ",
+    "defaultDescription": "Đánh giá và thông tin sản phẩm công nghệ mới nhất"
+  }
+}
