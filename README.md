@@ -67,7 +67,7 @@ npm run dev
 
 ```env
 # 网站配置
-NEXT_PUBLIC_SITE_URL=https://jcski.com
+NEXT_PUBLIC_SITE_URL=https://your-domain.com
 
 # 后台管理（必需）
 ADMIN_USERNAME=admin
@@ -248,9 +248,9 @@ MIT License
 
 ## 🔗 相关链接
 
-- **网站**: https://jcski.com
 - **文档**: [查看完整文档](./DOCUMENTATION.md)
 - **后台**: [后台管理文档](./ADMIN.md)
+- **部署**: [部署指南](./DEPLOYMENT.md)
 
 ---
 
