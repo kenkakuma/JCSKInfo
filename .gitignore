@@ -38,6 +38,21 @@ next-env.d.ts
 # contentlayer
 .contentlayer
 
+# private documents and sensitive files
+ADMIN_ARCHITECTURE.md
+*.backup
+*_PRIVATE.md
+*_SECRET.md
+/docs/private/
+/private/
 
+# IDE
+.idea/
+.vscode/settings.json
+*.swp
+*.swo
 
+# OS
+.DS_Store
+Thumbs.db
 
