@@ -171,7 +171,7 @@ export default async function PostPage({ params }: { params: { lang: Language; s
 
         {/* 文章内容 */}
         <div className="prose prose-lg mx-auto dark:prose-dark">
-          <MDXContent code={post.body.code} />
+          <MDXContent code={post.body.code} skipFirstImage={!!post.image} />
         </div>
 
         {/* 文章内广告 */}

@@ -18,7 +18,7 @@ interface ImageSkeletonProps extends Omit<ImageProps, 'onLoad' | 'onError'> {
 export default function ImageSkeleton({
   fallbackSrc,
   alt,
-  className,
+  className = '',
   ...props
 }: ImageSkeletonProps) {
   const [loading, setLoading] = useState(true)
@@ -26,6 +26,7 @@ export default function ImageSkeleton({
 
   const handleLoad = () => {
     setLoading(false)
+    setError(false)
   }
 
   const handleError = () => {
@@ -33,11 +34,14 @@ export default function ImageSkeleton({
     setError(true)
   }
 
+  // 如果有 fallbackSrc 且发生错误，使用 fallbackSrc
+  const imageSrc = error && fallbackSrc ? fallbackSrc : props.src
+
   if (error && !fallbackSrc) {
     // 显示优雅的回退 UI
     return (
       <div
-        className={`flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 ${className}`}
+        className={`flex h-full w-full items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 ${className}`}
       >
         <div className="p-4 text-center">
           <div className="mb-2 text-4xl opacity-30">🖼️</div>
@@ -48,24 +52,24 @@ export default function ImageSkeleton({
   }
 
   return (
-    <div className="relative">
-      {/* 骨架屏 */}
+    <>
+      {/* 骨架屏 - 在图片加载时显示 */}
       {loading && (
         <div
-          className={`absolute inset-0 animate-pulse bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 dark:from-gray-700 dark:via-gray-600 dark:to-gray-700 ${className}`}
-          style={{ backgroundSize: '200% 100%' }}
+          className={`absolute inset-0 z-10 animate-pulse bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 dark:from-gray-700 dark:via-gray-600 dark:to-gray-700`}
         />
       )}
 
       {/* 实际图片 */}
       <Image
         {...props}
-        src={error && fallbackSrc ? fallbackSrc : props.src}
-        alt={alt}
+        src={imageSrc}
+        alt={alt || ''}
         className={`transition-opacity duration-300 ${loading ? 'opacity-0' : 'opacity-100'} ${className}`}
         onLoad={handleLoad}
         onError={handleError}
+        unoptimized={false}
       />
-    </div>
+    </>
   )
 }
