@@ -31,9 +31,23 @@
 - ✅ **联盟链接** - Shopee、Amazon、Lazada、Rakuten
 - ✅ **小工具** - 天气、加密货币、股票信息
 
-## 🚀 快速开始
+## 🚀 部署方式
 
-### 环境要求
+### ⚡ Vercel 部署 (推荐)
+
+**最简单的部署方式，3 分钟上线！**
+
+1. 访问 https://vercel.com 并用 GitHub 登录
+2. 导入项目 `kenkakuma/JCSKInfo`
+3. 配置环境变量（参考下方）
+4. 点击 Deploy
+
+📖 详细指南: [VERCEL_DEPLOYMENT.md](./VERCEL_DEPLOYMENT.md)  
+⚡ 快速参考: [VERCEL_QUICK_START.md](./VERCEL_QUICK_START.md)
+
+### 💻 本地开发
+
+#### 环境要求
 
 - Node.js 16+
 - npm 8+
