@@ -81,7 +81,7 @@ export default async function LangLayout({
           <div className="flex flex-col">
             <Link
               href={`/${params.lang}`}
-              className="font-mono text-3xl font-extrabold italic text-[#2c5282] dark:text-[#e2e8f0]"
+              className="font-mono text-3xl font-extrabold italic text-gray-700 dark:text-gray-300"
             >
               {config.name}
             </Link>

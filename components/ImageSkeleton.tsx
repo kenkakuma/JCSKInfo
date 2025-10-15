@@ -70,7 +70,10 @@ export default function ImageSkeleton({
         {...props}
         src={imageSrc}
         alt={alt || ''}
-        className={`transition-opacity duration-300 ${loading ? 'opacity-0' : 'opacity-100'} ${className}`}
+        className={`${loading ? 'opacity-0' : 'opacity-100'} ${className}`}
+        style={{
+          transition: 'opacity 300ms ease-in-out',
+        }}
         onLoad={handleLoad}
         onError={handleError}
         // 本地图片使用 unoptimized 模式，避免优化 API 错误

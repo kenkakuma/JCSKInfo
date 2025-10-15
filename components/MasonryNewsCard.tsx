@@ -89,10 +89,10 @@ export default function MasonryNewsCard({
                   src={post.image}
                   alt={post.title}
                   fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  className="object-cover transition-transform duration-500 ease-out will-change-transform group-hover:scale-110"
                 />
               ) : (
-                <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-blue-400 to-blue-600 transition-transform duration-500 group-hover:scale-110">
+                <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-blue-400 to-blue-600 transition-transform duration-500 ease-out will-change-transform group-hover:scale-110">
                   <div className="text-6xl font-bold text-white opacity-20">
                     {post.title.substring(0, 3)}
                   </div>
@@ -123,10 +123,10 @@ export default function MasonryNewsCard({
                       src={post.image}
                       alt={post.title}
                       fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-110"
+                      className="object-cover transition-transform duration-500 ease-out will-change-transform group-hover:scale-110"
                     />
                   ) : (
-                    <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-indigo-400 to-purple-600 transition-transform duration-500 group-hover:scale-110">
+                    <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-indigo-400 to-purple-600 transition-transform duration-500 ease-out will-change-transform group-hover:scale-110">
                       <div className="text-6xl font-bold text-white opacity-20">
                         {post.title.substring(0, 3)}
                       </div>
@@ -261,10 +261,10 @@ export default function MasonryNewsCard({
                       src={post.image}
                       alt={post.title}
                       fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-110"
+                      className="object-cover transition-transform duration-500 ease-out will-change-transform group-hover:scale-110"
                     />
                   ) : (
-                    <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-pink-400 to-rose-600 transition-transform duration-500 group-hover:scale-110">
+                    <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-pink-400 to-rose-600 transition-transform duration-500 ease-out will-change-transform group-hover:scale-110">
                       <div className="text-6xl font-bold text-white opacity-20">
                         {post.title.substring(0, 3)}
                       </div>
