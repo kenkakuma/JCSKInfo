@@ -26,6 +26,44 @@ const nextConfig = {
         protocol: 'https',
         hostname: '**.cloudinary.com',
       },
+      // 新闻媒体图片源
+      {
+        protocol: 'https',
+        hostname: 'cdn.mos.cms.futurecdn.net',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.futurecdn.net',
+      },
+      {
+        protocol: 'https',
+        hostname: 'coincentral.com',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.coincentral.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.reuters.com',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.reuters.com',
+      },
+      // 通配符支持更多新闻源
+      {
+        protocol: 'https',
+        hostname: '**.wp.com',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.amazonaws.com',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.cloudfront.net',
+      },
     ],
     formats: ['image/avif', 'image/webp'],
     dangerouslyAllowSVG: true,
