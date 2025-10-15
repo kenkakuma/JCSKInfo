@@ -6,8 +6,6 @@ backend:
   name: github
   repo: kenkakuma/JCSKInfo
   branch: main
-  base_url: https://jcski.com
-  auth_endpoint: /api/cms/auth
 
 # 媒体文件配置
 media_folder: public/images/posts
