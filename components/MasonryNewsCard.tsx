@@ -6,6 +6,7 @@ import { Clock, MoreHorizontal, Tag } from 'lucide-react'
 import type { Post } from '@/lib/types'
 import LikeButton from './LikeButton'
 import ViewCounter from './ViewCounter'
+import ImageSkeleton from './ImageSkeleton'
 import { getTimeAgo } from '@/lib/utils'
 
 interface MasonryNewsCardProps {
@@ -78,7 +79,7 @@ export default function MasonryNewsCard({
             {/* 右侧图片 */}
             <div className="relative h-80 overflow-hidden rounded-xl md:h-full">
               {post.image ? (
-                <Image
+                <ImageSkeleton
                   src={post.image}
                   alt={post.title}
                   fill
@@ -109,7 +110,7 @@ export default function MasonryNewsCard({
               <div className="relative flex h-64 items-center justify-center p-3">
                 <div className="relative h-48 w-full overflow-hidden rounded-xl">
                   {post.image ? (
-                    <Image
+                    <ImageSkeleton
                       src={post.image}
                       alt={post.title}
                       fill
@@ -240,7 +241,7 @@ export default function MasonryNewsCard({
               <div className="relative flex h-64 items-center justify-center p-3">
                 <div className="relative h-48 w-full overflow-hidden rounded-xl">
                   {post.image ? (
-                    <Image
+                    <ImageSkeleton
                       src={post.image}
                       alt={post.title}
                       fill
@@ -273,7 +274,7 @@ export default function MasonryNewsCard({
               <div className="relative flex h-64 items-center justify-center p-4">
                 <div className="relative h-48 w-full overflow-hidden rounded-xl">
                   {post.image ? (
-                    <Image src={post.image} alt={post.title} fill className="object-cover" />
+                    <ImageSkeleton src={post.image} alt={post.title} fill className="object-cover" />
                   ) : (
                     <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-purple-400 to-indigo-600">
                       <div className="text-6xl font-bold text-white opacity-20">
@@ -342,7 +343,7 @@ export default function MasonryNewsCard({
         <div className="h-full overflow-hidden rounded-xl bg-white transition-transform duration-300 hover:scale-105 dark:bg-gray-900">
           <div className="relative h-48">
             {post.image ? (
-              <Image src={post.image} alt={post.title} fill className="object-cover" />
+              <ImageSkeleton src={post.image} alt={post.title} fill className="object-cover" />
             ) : (
               <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-red-500 to-orange-500">
                 <div className="text-4xl font-bold text-white opacity-30">
