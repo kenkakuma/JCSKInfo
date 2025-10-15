@@ -6,10 +6,11 @@ export const ADMIN_CONFIG = {
     posts: true, // 文章管理（第一阶段）
     media: false, // 图片管理（第二阶段）
     automation: false, // 自动化（第三阶段）
+    analytics: true, // 数据分析（GA4 + AdSense）
     monetization: {
       enabled: true, // 盈利功能
       affiliate: true, // 联盟链接
-      adsense: false, // AdSense（待开通）
+      adsense: true, // AdSense（已集成）
     },
   },
 
@@ -51,6 +52,13 @@ export const ADMIN_MENU = [
     icon: 'FileText',
     href: '/admin/posts',
     enabled: ADMIN_CONFIG.features.posts,
+  },
+  {
+    id: 'analytics',
+    label: '数据分析',
+    icon: 'Activity',
+    href: '/admin/analytics',
+    enabled: ADMIN_CONFIG.features.analytics,
   },
   {
     id: 'media',

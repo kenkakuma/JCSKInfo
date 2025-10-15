@@ -2,7 +2,17 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { LayoutDashboard, FileText, Image, Bot, DollarSign, LogOut, Menu, X } from 'lucide-react'
+import {
+  LayoutDashboard,
+  FileText,
+  Image,
+  Bot,
+  DollarSign,
+  LogOut,
+  Menu,
+  X,
+  Activity,
+} from 'lucide-react'
 import { useState } from 'react'
 import { ADMIN_MENU } from '@/lib/config/admin-config'
 
@@ -12,6 +22,7 @@ const iconMap = {
   Image,
   Bot,
   DollarSign,
+  Activity,
 }
 
 export default function AdminNav() {

@@ -1,6 +1,7 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter, Noto_Serif, JetBrains_Mono } from 'next/font/google'
+import { GoogleAnalytics, GoogleAdSense } from '@/lib/analytics'
 
 const inter = Inter({
   subsets: ['latin', 'vietnamese'],
@@ -48,6 +49,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         className={`${inter.variable} ${notoSerif.variable} ${jetbrainsMono.variable} font-sans`}
       >
         {children}
+        {/* Google Analytics */}
+        <GoogleAnalytics />
+        {/* Google AdSense */}
+        <GoogleAdSense />
       </body>
     </html>
   )
