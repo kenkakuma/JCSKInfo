@@ -43,6 +43,9 @@ ADMIN_ARCHITECTURE.md
 *.backup
 *_PRIVATE.md
 *_SECRET.md
+*credentials*.md
+.vercel-credentials.md
+.vercel-deployment-status.md
 /docs/private/
 /private/
 

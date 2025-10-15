@@ -36,16 +36,19 @@ Sveltia CMS 是一个轻量级、现代化的 Git-based 内容管理系统：
 对于 JetCode·SKI 项目，Sveltia CMS 是完美的选择：
 
 ✅ **完美适配现有架构**
+
 - 无需修改 Contentlayer 配置
 - 无需修改 MDX 文件结构
 - 无需修改任何代码
 
 ✅ **支持多语言结构**
+
 - 越南语 (vi)
 - 日语 (ja)
 - 英语 (en)
 
 ✅ **解决 Vercel 限制**
+
 - Vercel Serverless 不支持文件系统写入
 - Sveltia 通过 GitHub API 直接更新内容
 - 自动触发 Vercel 重新部署
@@ -98,6 +101,7 @@ Sveltia CMS 是一个轻量级、现代化的 Git-based 内容管理系统：
 ### 为什么需要 OAuth？
 
 Sveltia CMS 需要通过 GitHub OAuth 来获取权限，以便：
+
 - 读取仓库内容
 - 创建/编辑/删除文章
 - 提交更改到 GitHub
@@ -112,12 +116,12 @@ Sveltia CMS 需要通过 GitHub OAuth 来获取权限，以便：
 
 #### 2. 填写应用信息
 
-| 字段 | 填写内容 |
-|------|----------|
-| **Application name** | `JetCode·SKI CMS` |
-| **Homepage URL** | `https://jcski.com` |
-| **Application description** | (可选) `Content management for JetCode·SKI` |
-| **Authorization callback URL** | `https://api.netlify.com/auth/done` |
+| 字段                           | 填写内容                                    |
+| ------------------------------ | ------------------------------------------- |
+| **Application name**           | `JetCode·SKI CMS`                           |
+| **Homepage URL**               | `https://jcski.com`                         |
+| **Application description**    | (可选) `Content management for JetCode·SKI` |
+| **Authorization callback URL** | `https://api.netlify.com/auth/done`         |
 
 ⚠️ **重要**: Authorization callback URL 必须是 `https://api.netlify.com/auth/done`，即使您使用的是 Vercel！这是 Sveltia/Decap CMS 的标准回调地址。
 
@@ -143,9 +147,9 @@ Client Secret: ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 添加以下环境变量：
 
-| 变量名 | 值 | 环境 |
-|--------|-----|------|
-| `OAUTH_GITHUB_CLIENT_ID` | `Iv1.xxxxxxxxxxxxxxxx` | Production, Preview, Development |
+| 变量名                       | 值                                         | 环境                             |
+| ---------------------------- | ------------------------------------------ | -------------------------------- |
+| `OAUTH_GITHUB_CLIENT_ID`     | `Iv1.xxxxxxxxxxxxxxxx`                     | Production, Preview, Development |
 | `OAUTH_GITHUB_CLIENT_SECRET` | `ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx` | Production, Preview, Development |
 
 ⚠️ **注意**: 不是 `GITHUB_TOKEN`，而是 `OAUTH_GITHUB_CLIENT_ID` 和 `OAUTH_GITHUB_CLIENT_SECRET`！
@@ -179,18 +183,18 @@ import { NextRequest, NextResponse } from 'next/server'
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams
   const code = searchParams.get('code')
-  
+
   if (!code) {
     return NextResponse.json({ error: 'No code provided' }, { status: 400 })
   }
-  
+
   try {
     // 使用 code 换取 access_token
     const tokenResponse = await fetch('https://github.com/login/oauth/access_token', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json',
+        Accept: 'application/json',
       },
       body: JSON.stringify({
         client_id: process.env.OAUTH_GITHUB_CLIENT_ID,
@@ -198,13 +202,13 @@ export async function GET(request: NextRequest) {
         code,
       }),
     })
-    
+
     const data = await tokenResponse.json()
-    
+
     if (data.error) {
       return NextResponse.json({ error: data.error_description }, { status: 400 })
     }
-    
+
     // 重定向回 CMS，带上 token
     const redirectUrl = `${request.nextUrl.origin}/admin#access_token=${data.access_token}&token_type=${data.token_type}`
     return NextResponse.redirect(redirectUrl)
@@ -302,6 +306,7 @@ git push origin main
    - 文件: `content/posts/en/apple-vision-pro-apps.mdx`
 
 ⚠️ **注意**:
+
 - translationKey 必须相同才能关联
 - 建议使用英文短语，小写字母 + 连字符
 - 示例: `apple-vision-pro`, `tesla-cybertruck`, `openai-gpt4`
@@ -312,6 +317,7 @@ git push origin main
 - **已发布** (`draft: false`): 会在网站上显示
 
 您可以：
+
 1. 创建草稿文章，慢慢编辑
 2. 编辑完成后，取消勾选 "草稿状态"
 3. 发布文章
@@ -347,6 +353,7 @@ npx @sveltia/cms-auth start
 访问: http://localhost:3000/admin
 
 在本地模式下：
+
 - 无需 GitHub OAuth
 - 直接修改本地文件
 - 实时预览更改
@@ -378,7 +385,8 @@ npx @sveltia/cms-auth start
 
 ### Q3: 编辑文章后，网站多久更新？
 
-**A**: 
+**A**:
+
 - Sveltia CMS 保存 → GitHub 提交 → Vercel 自动部署
 - 整个流程大约 **2-3 分钟**
 
@@ -399,6 +407,7 @@ npx @sveltia/cms-auth start
 - **访问路径**: `/images/posts/your-image.jpg`
 
 使用方式：
+
 1. 手动上传图片到 `public/images/posts/`
 2. 在文章中引用: `/images/posts/your-image.jpg`
 
@@ -481,4 +490,3 @@ Vercel 自动检测
 **如有问题，请参考本文档或查看 Sveltia CMS 官方文档。**
 
 祝使用愉快！🎉
-

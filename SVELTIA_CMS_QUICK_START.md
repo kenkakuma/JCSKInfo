@@ -35,10 +35,10 @@
 
 添加两个变量：
 
-| 变量名 | 值 | 环境 |
-|--------|-----|------|
-| `OAUTH_GITHUB_CLIENT_ID` | 您的 Client ID | All |
-| `OAUTH_GITHUB_CLIENT_SECRET` | 您的 Client Secret | All |
+| 变量名                       | 值                 | 环境 |
+| ---------------------------- | ------------------ | ---- |
+| `OAUTH_GITHUB_CLIENT_ID`     | 您的 Client ID     | All  |
+| `OAUTH_GITHUB_CLIENT_SECRET` | 您的 Client Secret | All  |
 
 ⚠️ 添加后**必须重新部署**！
 
@@ -104,11 +104,13 @@
 ### translationKey 规则
 
 ✅ **正确示例**:
+
 - `apple-vision-pro-apps`
 - `tesla-cybertruck-2024`
 - `openai-gpt4-turbo`
 
 ❌ **错误示例**:
+
 - `Apple Vision Pro Apps` (有空格、大写)
 - `特斯拉卡车` (中文)
 - `iphone_15` (下划线)
@@ -149,4 +151,3 @@
 ---
 
 **配置完成！祝使用愉快！** 🎉
-
