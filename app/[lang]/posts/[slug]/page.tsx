@@ -9,6 +9,7 @@ import ShareButtons from '@/components/ShareButtons'
 import RelatedPosts from '@/components/RelatedPosts'
 import LanguageSwitcher from '@/components/LanguageSwitcher'
 import MDXContent from '@/components/MDXContent'
+import ViewCounter from '@/components/ViewCounter'
 import { DisplayAd, InArticleAd } from '@/components/AdSense'
 import { Metadata } from 'next'
 import { ArticleJsonLd, BreadcrumbJsonLd } from '@/components/JsonLd'
@@ -111,7 +112,9 @@ export default async function PostPage({ params }: { params: { lang: Language; s
       <ArticleJsonLd post={post} url={`${siteUrl}${post.url}`} />
 
       {/* 结构化数据 - Breadcrumb */}
-      <BreadcrumbJsonLd items={breadcrumbItems.map((item) => ({ name: item.name, url: `${siteUrl}${item.url}` }))} />
+      <BreadcrumbJsonLd
+        items={breadcrumbItems.map((item) => ({ name: item.name, url: `${siteUrl}${item.url}` }))}
+      />
 
       <article className="container mx-auto px-4 py-12">
         {/* 面包屑导航 */}
@@ -150,6 +153,7 @@ export default async function PostPage({ params }: { params: { lang: Language; s
                 {Math.ceil(post.readingTime.minutes)} {dict.common.readingTime}
               </span>
             </div>
+            <ViewCounter postId={post._id} increment={true} />
           </div>
         </header>
 

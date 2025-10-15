@@ -21,6 +21,29 @@
   body {
     @apply bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100;
   }
+
+  /* 平滑主题过渡动画 */
+  html {
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
+  }
+
+  body,
+  * {
+    transition-property: background-color, border-color, color, fill, stroke;
+    transition-duration: 0.2s;
+    transition-timing-function: ease-in-out;
+  }
+
+  /* 排除某些不需要过渡的元素 */
+  input,
+  textarea,
+  select,
+  button:active,
+  [data-no-transition] {
+    transition: none !important;
+  }
 }
 
 /* MDX样式 */

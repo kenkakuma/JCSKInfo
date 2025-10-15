@@ -9,6 +9,101 @@
 
 ---
 
+## [0.2.6-beta] - 2025-10-15
+
+### 🎯 版本概述
+
+**功能完善与用户体验优化** - 添加搜索、浏览量统计、图片加载优化、暗色模式增强等核心功能。
+
+### ✨ 新增功能
+
+#### 🔍 搜索功能
+
+- 全站智能搜索（标题、摘要、标签、内容）
+- 搜索关键词高亮显示
+- 搜索历史记录（最多 10 条）
+- 快捷键支持（Ctrl/Cmd + K）
+- 搜索结果页面带评分排序
+- 优雅的模态框设计
+
+#### 📊 文章浏览量统计
+
+- 基于 localStorage 的本地统计
+- 防重复计数（每天每用户每文章一次）
+- 浏览历史记录（最多 1000 条）
+- 文章详情页和卡片显示浏览量
+- 浏览量格式化（K/M）
+
+#### 🖼️ 图片加载优化
+
+- 图片加载骨架屏动画
+- 加载失败优雅回退 UI
+- Next.js Image 配置优化（remotePatterns）
+- SVG 图片安全支持
+- Cloudinary CDN 集成
+- 缓存策略优化（60 秒 TTL）
+
+#### 🎨 暗色模式优化
+
+- 全局平滑过渡动画（0.2 秒）
+- 所有组件暗色模式对比度增强
+- 智能排除输入框等元素的过渡
+
+#### 🔗 分享功能增强
+
+- 优雅的悬停效果（放大 + 阴影）
+- 复制成功视觉反馈（勾选图标 + 弹跳动画）
+- 工具提示气泡（带箭头）
+- 状态颜色变化（复制后变绿）
+
+### 🏗️ 基础设施
+
+- **PWA 图标**：动态生成 SVG 格式图标（192x192, 512x512）
+- **版本管理**：修复 `package.json` 版本号为 `0.2.6-beta`
+- **图标脚本**：添加 `scripts/generate-icons.js` 自动生成图标
+
+### 🔧 技术改进
+
+- 搜索系统：正则转义、客户端实现、高性能
+- 统计系统：localStorage API、错误处理、数据清理
+- 图片系统：多层回退、CDN 支持、SVG CSP
+
+### 📝 新增文件
+
+```
+lib/search.ts
+lib/views.ts
+components/Search.tsx
+components/ViewCounter.tsx
+components/ImageSkeleton.tsx
+app/[lang]/search/page.tsx
+public/icon-192.svg
+public/icon-512.svg
+scripts/generate-icons.js
+RELEASE_v0.2.6.md
+```
+
+### 🔄 修改文件
+
+```
+package.json
+app/manifest.ts
+next.config.js
+app/globals.css
+app/[lang]/layout.tsx
+app/[lang]/posts/[slug]/page.tsx
+components/MasonryNewsCard.tsx
+components/ShareButtons.tsx
+```
+
+### 🎯 性能影响
+
+- Client Bundle: +15 KB（主要是搜索功能）
+- Server Bundle: +5 KB
+- 总代码量: ~700 行
+
+---
+
 ## [0.2.5-beta] - 2025-10-15
 
 ### 🎯 版本概述

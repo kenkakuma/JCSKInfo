@@ -4,6 +4,7 @@ import { languages, Language, siteConfig, navLinks } from '@/config/site'
 import { getDictionary } from '@/lib/dictionary'
 import LanguageSwitcher from '@/components/LanguageSwitcher'
 import ThemeToggle from '@/components/ThemeToggle'
+import Search from '@/components/Search'
 
 export async function generateStaticParams() {
   return languages.map((lang) => ({ lang }))
@@ -92,6 +93,12 @@ export default async function LangLayout({
           </div>
 
           <div className="flex items-center gap-6">
+            {/* 搜索框 */}
+            <div className="hidden md:block">
+              <Search lang={params.lang} placeholder={dict.common.search} />
+            </div>
+
+            {/* 导航链接 */}
             <ul className="hidden items-center gap-6 md:flex">
               {links.map((link) => (
                 <li key={link.href}>
@@ -105,7 +112,8 @@ export default async function LangLayout({
               ))}
             </ul>
 
-            <div className="flex items-center gap-2">
+            {/* 工具按钮 */}
+            <div className="flex items-center gap-3">
               <ThemeToggle />
               <LanguageSwitcher currentLang={params.lang} />
             </div>

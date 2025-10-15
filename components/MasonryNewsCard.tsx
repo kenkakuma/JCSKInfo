@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { Clock, MoreHorizontal, Tag } from 'lucide-react'
 import type { Post } from '@/lib/types'
 import LikeButton from './LikeButton'
+import ViewCounter from './ViewCounter'
 import { getTimeAgo } from '@/lib/utils'
 
 interface MasonryNewsCardProps {
@@ -36,6 +37,8 @@ export default function MasonryNewsCard({
                     <Clock className="h-4 w-4" />
                     <span>{post.readingTime.text}</span>
                   </div>
+                  <span>•</span>
+                  <ViewCounter postId={post._id} showIcon={false} className="text-sm" />
                   <span>•</span>
                   <span>发布于{getTimeAgo(post.date, post.lang)}</span>
                 </div>
@@ -135,6 +138,8 @@ export default function MasonryNewsCard({
                       <span>{post.readingTime.text}</span>
                     </div>
                     <span>•</span>
+                    <ViewCounter postId={post._id} showIcon={false} className="text-xs" />
+                    <span>•</span>
                     <span>发布于{getTimeAgo(post.date, post.lang)}</span>
                   </div>
 
@@ -194,6 +199,8 @@ export default function MasonryNewsCard({
                       <Clock className="h-3 w-3" />
                       <span>{post.readingTime.text}</span>
                     </div>
+                    <span>•</span>
+                    <ViewCounter postId={post._id} showIcon={false} className="text-xs" />
                     <span>•</span>
                     <span>发布于{getTimeAgo(post.date, post.lang)}</span>
                   </div>
@@ -287,6 +294,8 @@ export default function MasonryNewsCard({
                   <div className="mb-2 flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400">
                     <Clock className="h-3 w-3" />
                     <span>{post.readingTime.text}</span>
+                    <span>•</span>
+                    <ViewCounter postId={post._id} showIcon={false} className="text-xs" />
                   </div>
 
                   <p className="line-clamp-3 text-sm text-gray-600 dark:text-gray-300">
@@ -346,30 +355,33 @@ export default function MasonryNewsCard({
             <h3 className="mb-3 line-clamp-2 text-base font-normal text-gray-900 transition-colors group-hover:text-blue-600 dark:text-white dark:group-hover:text-blue-400">
               {post.title}
             </h3>
-            <div className="mb-2 flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400">
+            <div className="mb-3 flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400">
               <Clock className="h-3 w-3" />
               <span>{post.readingTime.text}</span>
               <span>•</span>
+              <ViewCounter postId={post._id} showIcon={false} className="text-xs" />
+              <span>•</span>
               <span>发布于{getTimeAgo(post.date, post.lang)}</span>
             </div>
-            {post.tags && post.tags.length > 0 && (
-              <div className="mb-2 flex items-center gap-1.5">
-                <Tag className="h-3 w-3 text-gray-400" />
-                <div className="flex flex-wrap gap-1">
-                  {post.tags.slice(0, 2).map((tag, index) => (
-                    <span
-                      key={index}
-                      className="rounded-full bg-blue-100 px-2 py-0.5 text-xs text-blue-600 dark:bg-blue-900/30 dark:text-blue-400"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
+
+            {/* 底部：点赞和标签在同一行 */}
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <LikeButton postId={post._id} showCount={false} />
+                {post.tags && post.tags.length > 0 && (
+                  <div className="flex flex-wrap gap-1.5">
+                    {post.tags.slice(0, 2).map((tag, index) => (
+                      <span
+                        key={index}
+                        className="rounded-full bg-blue-100 px-2 py-0.5 text-xs text-blue-600 dark:bg-blue-900/30 dark:text-blue-400"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
               </div>
-            )}
-            <div className="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400">
-              <LikeButton postId={post._id} showCount={false} />
-              <button className="transition-colors hover:text-gray-900 dark:hover:text-white">
+              <button className="flex-shrink-0 transition-colors hover:text-gray-900 dark:hover:text-white">
                 <MoreHorizontal className="h-4 w-4" />
               </button>
             </div>
