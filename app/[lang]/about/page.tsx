@@ -92,9 +92,9 @@ export default async function AboutPage({ params }: { params: { lang: Language }
   const text = content[params.lang]
 
   return (
-    <div className="container mx-auto px-4 py-12">
+    <div className="container mx-auto px-4 py-12 font-merriweather">
       <div className="mx-auto max-w-4xl">
-        <h1 className="mb-12 text-center text-5xl font-thin text-gray-900 dark:text-gray-100">
+        <h1 className="mb-12 text-center text-5xl font-normal text-gray-900 dark:text-gray-100">
           {text.title}
         </h1>
 
@@ -106,7 +106,7 @@ export default async function AboutPage({ params }: { params: { lang: Language }
                 key={index}
                 className={`text-lg leading-relaxed ${line === '' ? 'mb-4' : 'mb-2'} ${
                   index === 0
-                    ? 'text-gray-900 dark:text-gray-100'
+                    ? 'font-normal text-gray-900 dark:text-gray-100'
                     : 'text-gray-700 dark:text-gray-300'
                 }`}
               >
@@ -117,7 +117,7 @@ export default async function AboutPage({ params }: { params: { lang: Language }
 
           {/* 技术栈 */}
           <div className="rounded-2xl border border-gray-200 bg-white p-8 dark:border-gray-700 dark:bg-gray-800">
-            <h2 className="mb-6 text-2xl font-semibold text-gray-900 dark:text-gray-100">
+            <h2 className="mb-6 text-2xl font-normal text-gray-900 dark:text-gray-100">
               {text.techStack}
             </h2>
             <ul className="grid gap-3 sm:grid-cols-2">
