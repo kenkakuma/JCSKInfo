@@ -34,7 +34,7 @@ export default function MasonryNewsCard({
             <div className="flex flex-col justify-between">
               <div>
                 <h2
-                  className={`mb-4 ${titleFont} text-2xl font-normal text-gray-900 transition-colors duration-300 group-hover:text-blue-600 dark:text-white dark:group-hover:text-blue-400 md:text-4xl`}
+                  className={`mb-4 ${titleFont} text-2xl font-normal text-gray-900 transition-colors duration-300 group-hover:text-blue-600 dark:text-white dark:group-hover:text-blue-400 md:text-[40px] md:leading-tight`}
                 >
                   {post.title}
                 </h2>
@@ -139,7 +139,7 @@ export default function MasonryNewsCard({
               <div className="flex flex-col justify-between p-4 md:col-span-2">
                 <div>
                   <h3
-                    className={`mb-3 line-clamp-2 ${titleFont} text-2xl font-normal text-gray-900 transition-colors duration-300 group-hover:text-blue-600 dark:text-white dark:group-hover:text-blue-400 md:text-3xl`}
+                    className={`mb-3 line-clamp-2 ${titleFont} text-2xl font-normal text-gray-900 transition-colors duration-300 group-hover:text-blue-600 dark:text-white dark:group-hover:text-blue-400 md:text-[28px] md:leading-tight`}
                   >
                     {post.title}
                   </h3>
@@ -206,7 +206,7 @@ export default function MasonryNewsCard({
               <div className="flex flex-col justify-between p-4 md:col-span-2">
                 <div>
                   <h3
-                    className={`mb-3 line-clamp-2 ${titleFont} text-2xl font-normal text-gray-900 transition-colors duration-300 group-hover:text-blue-600 dark:text-white dark:group-hover:text-blue-400 md:text-3xl`}
+                    className={`mb-3 line-clamp-2 ${titleFont} text-2xl font-normal text-gray-900 transition-colors duration-300 group-hover:text-blue-600 dark:text-white dark:group-hover:text-blue-400 md:text-[28px] md:leading-tight`}
                   >
                     {post.title}
                   </h3>
@@ -290,7 +290,12 @@ export default function MasonryNewsCard({
               <div className="relative flex h-64 items-center justify-center p-4">
                 <div className="relative h-48 w-full overflow-hidden rounded-xl">
                   {post.image ? (
-                    <ImageSkeleton src={post.image} alt={post.title} fill className="object-cover" />
+                    <ImageSkeleton
+                      src={post.image}
+                      alt={post.title}
+                      fill
+                      className="object-cover"
+                    />
                   ) : (
                     <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-purple-400 to-indigo-600">
                       <div className="text-6xl font-bold text-white opacity-20">
