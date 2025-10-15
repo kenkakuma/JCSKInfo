@@ -1,6 +1,6 @@
 import './globals.css'
 import type { Metadata } from 'next'
-import { Inter, Noto_Serif, JetBrains_Mono } from 'next/font/google'
+import { Inter, Noto_Serif, JetBrains_Mono, Playfair_Display } from 'next/font/google'
 import { GoogleAnalytics, GoogleAdSense } from '@/lib/analytics'
 
 const inter = Inter({
@@ -22,6 +22,14 @@ const jetbrainsMono = JetBrains_Mono({
   weight: ['100', '400', '500', '600', '700', '800'],
   style: ['normal', 'italic'],
   variable: '--font-jetbrains-mono',
+  display: 'swap',
+})
+
+const playfairDisplay = Playfair_Display({
+  subsets: ['latin', 'vietnamese'],
+  weight: ['400'],
+  style: ['normal', 'italic'],
+  variable: '--font-playfair-display',
   display: 'swap',
 })
 
@@ -53,7 +61,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body
-        className={`${inter.variable} ${notoSerif.variable} ${jetbrainsMono.variable} font-sans`}
+        className={`${inter.variable} ${notoSerif.variable} ${jetbrainsMono.variable} ${playfairDisplay.variable} font-sans`}
       >
         {children}
         {/* Google Analytics */}
