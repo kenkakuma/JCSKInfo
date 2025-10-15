@@ -13,6 +13,13 @@ backend:
 media_folder: public/images/posts
 public_folder: /images/posts
 
+# Cloudinary 媒体库配置
+media_library:
+  name: cloudinary
+  config:
+    cloud_name: dt@hpzm21
+    api_key: 295771887569851
+
 # 本地开发模式支持
 local_backend: true
 
