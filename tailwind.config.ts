@@ -13,7 +13,7 @@ const config: Config = {
         sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
         serif: ['var(--font-noto-serif)', 'serif'],
         mono: ['var(--font-jetbrains-mono)', 'monospace'],
-        playfair: ['var(--font-playfair-display)', 'serif'],
+        merriweather: ['var(--font-merriweather)', 'serif'],
       },
       colors: {
         primary: {

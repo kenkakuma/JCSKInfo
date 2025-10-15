@@ -22,9 +22,9 @@ export default function MasonryNewsCard({
 }: MasonryNewsCardProps) {
   // 英雄卡片 - 特色文章（横向布局，左文字右图）
   if (variant === 'hero') {
-    // 根据语言选择字体：英语和越南语使用 Playfair Display Italic，日语使用 Noto Serif
+    // 根据语言选择字体：英语和越南语使用 Merriweather Italic，日语使用 Noto Serif
     const titleFont =
-      post.lang === 'en' || post.lang === 'vi' ? 'font-playfair italic' : 'font-serif'
+      post.lang === 'en' || post.lang === 'vi' ? 'font-merriweather italic' : 'font-serif'
 
     return (
       <Link href={post.url} className={colSpan}>
@@ -34,7 +34,7 @@ export default function MasonryNewsCard({
             <div className="flex flex-col justify-between">
               <div>
                 <h2
-                  className={`mb-4 ${titleFont} text-2xl font-normal text-gray-900 transition-colors duration-300 group-hover:text-blue-600 dark:text-white dark:group-hover:text-blue-400 md:text-3xl`}
+                  className={`mb-4 ${titleFont} text-3xl font-normal text-gray-900 transition-colors duration-300 group-hover:text-blue-600 dark:text-white dark:group-hover:text-blue-400 md:text-5xl`}
                 >
                   {post.title}
                 </h2>
@@ -107,8 +107,8 @@ export default function MasonryNewsCard({
 
   // 大卡片 - 横向布局占据整行（图片左，文字右）高度与小卡片一致
   if (variant === 'large') {
-    // 根据语言选择字体：英语和越南语使用 Playfair Display，日语使用 Noto Serif
-    const titleFont = post.lang === 'en' || post.lang === 'vi' ? 'font-playfair' : 'font-serif'
+    // 根据语言选择字体：英语和越南语使用 Merriweather，日语使用 Noto Serif
+    const titleFont = post.lang === 'en' || post.lang === 'vi' ? 'font-merriweather' : 'font-serif'
 
     return (
       <Link href={post.url} className={colSpan}>
@@ -139,7 +139,7 @@ export default function MasonryNewsCard({
               <div className="flex flex-col justify-between p-4 md:col-span-2">
                 <div>
                   <h3
-                    className={`mb-3 line-clamp-2 ${titleFont} text-2xl font-normal text-gray-900 transition-colors duration-300 group-hover:text-blue-600 dark:text-white dark:group-hover:text-blue-400`}
+                    className={`mb-3 line-clamp-2 ${titleFont} text-3xl font-normal text-gray-900 transition-colors duration-300 group-hover:text-blue-600 dark:text-white dark:group-hover:text-blue-400 md:text-4xl`}
                   >
                     {post.title}
                   </h3>
@@ -194,8 +194,8 @@ export default function MasonryNewsCard({
 
   // 大卡片反向 - 横向布局占据整行（图片右，文字左）高度与小卡片一致
   if (variant === 'large-reverse') {
-    // 根据语言选择字体：英语和越南语使用 Playfair Display，日语使用 Noto Serif
-    const titleFont = post.lang === 'en' || post.lang === 'vi' ? 'font-playfair' : 'font-serif'
+    // 根据语言选择字体：英语和越南语使用 Merriweather，日语使用 Noto Serif
+    const titleFont = post.lang === 'en' || post.lang === 'vi' ? 'font-merriweather' : 'font-serif'
 
     return (
       <Link href={post.url} className={colSpan}>
@@ -206,7 +206,7 @@ export default function MasonryNewsCard({
               <div className="flex flex-col justify-between p-4 md:col-span-2">
                 <div>
                   <h3
-                    className={`mb-3 line-clamp-2 ${titleFont} text-2xl font-normal text-gray-900 transition-colors duration-300 group-hover:text-blue-600 dark:text-white dark:group-hover:text-blue-400`}
+                    className={`mb-3 line-clamp-2 ${titleFont} text-3xl font-normal text-gray-900 transition-colors duration-300 group-hover:text-blue-600 dark:text-white dark:group-hover:text-blue-400 md:text-4xl`}
                   >
                     {post.title}
                   </h3>
