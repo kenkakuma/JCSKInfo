@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Activity, Users, Eye, Clock, TrendingUp, Globe, Smartphone, Monitor } from 'lucide-react'
+import { Activity, TrendingUp, Globe } from 'lucide-react'
 
 /**
  * Google Analytics 数据展示页面
@@ -102,157 +102,117 @@ export default function AnalyticsPage() {
         </div>
       </div>
 
-      {/* 模拟数据展示 - 实际项目中需要接入 GA4 API */}
+      {/* Google Analytics 快捷访问 */}
       {gaConnected && (
-        <>
-          {/* 快速统计 */}
-          <div className="grid gap-4 md:grid-cols-4">
-            <StatCard
-              icon={<Users className="h-6 w-6" />}
-              title="总访问用户"
-              value="12,345"
-              change="+12.5%"
-              isPositive={true}
-            />
-            <StatCard
-              icon={<Eye className="h-6 w-6" />}
-              title="页面浏览量"
-              value="45,678"
-              change="+8.3%"
-              isPositive={true}
-            />
-            <StatCard
-              icon={<Clock className="h-6 w-6" />}
-              title="平均停留时间"
-              value="2:34"
-              change="+5.2%"
-              isPositive={true}
-            />
-            <StatCard
-              icon={<TrendingUp className="h-6 w-6" />}
-              title="跳出率"
-              value="42.3%"
-              change="-3.1%"
-              isPositive={true}
-            />
-          </div>
-
-          {/* Google Analytics 嵌入 */}
-          <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
-            <h2 className="mb-4 text-xl font-semibold text-gray-900 dark:text-white">
-              访问数据详情
+        <div className="rounded-lg border border-gray-200 bg-white p-8 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+          <div className="text-center">
+            <Activity className="mx-auto mb-4 h-16 w-16 text-blue-600 dark:text-blue-400" />
+            <h2 className="mb-2 text-2xl font-semibold text-gray-900 dark:text-white">
+              Google Analytics 4
             </h2>
-
-            <div className="space-y-4">
-              {/* 提示信息 */}
-              <div className="rounded-lg bg-blue-50 p-4 text-sm text-blue-800 dark:bg-blue-900/20 dark:text-blue-300">
-                <p className="font-semibold">💡 如何查看完整数据：</p>
-                <ol className="ml-4 mt-2 list-decimal space-y-1">
-                  <li>
-                    访问{' '}
-                    <a
-                      href="https://analytics.google.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="underline"
-                    >
-                      Google Analytics
-                    </a>
-                  </li>
-                  <li>选择您的网站资源</li>
-                  <li>查看实时数据和报告</li>
-                </ol>
-              </div>
-
-              {/* 嵌入 GA Dashboard（可选） */}
-              <div className="rounded-lg border border-gray-200 bg-gray-50 p-8 text-center dark:border-gray-700 dark:bg-gray-900">
-                <Globe className="mx-auto mb-4 h-16 w-16 text-gray-400" />
-                <p className="text-gray-600 dark:text-gray-400">
-                  您可以嵌入 Google Analytics 仪表板或通过 API 获取实时数据
+            <p className="mb-6 text-gray-600 dark:text-gray-400">
+              查看网站的实时访问数据、流量来源、用户行为等详细分析
+            </p>
+            <a
+              href="https://analytics.google.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-8 py-3 text-lg font-medium text-white transition-colors hover:bg-blue-700"
+            >
+              <Globe className="h-5 w-5" />
+              访问 Google Analytics 控制台
+            </a>
+            <div className="mt-6 grid gap-4 text-left md:grid-cols-2">
+              <div className="rounded-lg bg-blue-50 p-4 dark:bg-blue-900/20">
+                <h3 className="mb-2 font-semibold text-blue-900 dark:text-blue-100">
+                  📊 实时数据
+                </h3>
+                <p className="text-sm text-blue-800 dark:text-blue-200">
+                  查看当前访问者、实时页面浏览、活跃用户等
                 </p>
-                <a
-                  href="https://analytics.google.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-4 inline-block rounded-lg bg-blue-600 px-6 py-2 text-white transition-colors hover:bg-blue-700"
-                >
-                  访问 Google Analytics
-                </a>
               </div>
-
-              {/* 设备分布 */}
-              <div className="grid gap-4 md:grid-cols-3">
-                <DeviceCard
-                  icon={<Monitor className="h-8 w-8" />}
-                  title="桌面设备"
-                  percentage="45.2%"
-                  count="5,578"
-                />
-                <DeviceCard
-                  icon={<Smartphone className="h-8 w-8" />}
-                  title="移动设备"
-                  percentage="48.6%"
-                  count="6,012"
-                />
-                <DeviceCard
-                  icon={<Monitor className="h-8 w-8" />}
-                  title="平板设备"
-                  percentage="6.2%"
-                  count="767"
-                />
+              <div className="rounded-lg bg-blue-50 p-4 dark:bg-blue-900/20">
+                <h3 className="mb-2 font-semibold text-blue-900 dark:text-blue-100">
+                  📈 流量分析
+                </h3>
+                <p className="text-sm text-blue-800 dark:text-blue-200">
+                  分析流量来源、用户获取渠道、转化路径
+                </p>
+              </div>
+              <div className="rounded-lg bg-blue-50 p-4 dark:bg-blue-900/20">
+                <h3 className="mb-2 font-semibold text-blue-900 dark:text-blue-100">
+                  👥 用户行为
+                </h3>
+                <p className="text-sm text-blue-800 dark:text-blue-200">
+                  了解用户参与度、停留时间、跳出率等指标
+                </p>
+              </div>
+              <div className="rounded-lg bg-blue-50 p-4 dark:bg-blue-900/20">
+                <h3 className="mb-2 font-semibold text-blue-900 dark:text-blue-100">
+                  📱 设备分析
+                </h3>
+                <p className="text-sm text-blue-800 dark:text-blue-200">
+                  查看访问设备分布、浏览器、操作系统等
+                </p>
               </div>
             </div>
           </div>
-        </>
+        </div>
       )}
 
-      {/* Google AdSense 数据 */}
+      {/* Google AdSense 快捷访问 */}
       {adsenseConnected && (
-        <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
-          <h2 className="mb-4 text-xl font-semibold text-gray-900 dark:text-white">广告收益</h2>
-
-          <div className="space-y-4">
-            {/* 收益统计 */}
-            <div className="grid gap-4 md:grid-cols-3">
-              <RevenueCard title="今日收益" value="$12.34" change="+15.2%" />
-              <RevenueCard title="本月收益" value="$345.67" change="+8.9%" />
-              <RevenueCard title="总收益" value="$2,345.89" change="+12.5%" />
-            </div>
-
-            {/* 提示信息 */}
-            <div className="rounded-lg bg-blue-50 p-4 text-sm text-blue-800 dark:bg-blue-900/20 dark:text-blue-300">
-              <p className="font-semibold">💡 如何查看完整收益数据：</p>
-              <ol className="ml-4 mt-2 list-decimal space-y-1">
-                <li>
-                  访问{' '}
-                  <a
-                    href="https://www.google.com/adsense"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="underline"
-                  >
-                    Google AdSense
-                  </a>
-                </li>
-                <li>查看报告和收益详情</li>
-                <li>设置付款信息</li>
-              </ol>
-            </div>
-
-            {/* AdSense 链接 */}
-            <div className="rounded-lg border border-gray-200 bg-gray-50 p-8 text-center dark:border-gray-700 dark:bg-gray-900">
-              <TrendingUp className="mx-auto mb-4 h-16 w-16 text-gray-400" />
-              <p className="text-gray-600 dark:text-gray-400">
-                访问 Google AdSense 查看详细的广告效果和收益数据
-              </p>
-              <a
-                href="https://www.google.com/adsense"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-4 inline-block rounded-lg bg-green-600 px-6 py-2 text-white transition-colors hover:bg-green-700"
-              >
-                访问 Google AdSense
-              </a>
+        <div className="rounded-lg border border-gray-200 bg-white p-8 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+          <div className="text-center">
+            <TrendingUp className="mx-auto mb-4 h-16 w-16 text-green-600 dark:text-green-400" />
+            <h2 className="mb-2 text-2xl font-semibold text-gray-900 dark:text-white">
+              Google AdSense
+            </h2>
+            <p className="mb-6 text-gray-600 dark:text-gray-400">
+              查看广告收益、广告效果、优化建议等详细数据
+            </p>
+            <a
+              href="https://www.google.com/adsense"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-lg bg-green-600 px-8 py-3 text-lg font-medium text-white transition-colors hover:bg-green-700"
+            >
+              <TrendingUp className="h-5 w-5" />
+              访问 Google AdSense 控制台
+            </a>
+            <div className="mt-6 grid gap-4 text-left md:grid-cols-2">
+              <div className="rounded-lg bg-green-50 p-4 dark:bg-green-900/20">
+                <h3 className="mb-2 font-semibold text-green-900 dark:text-green-100">
+                  💰 收益报告
+                </h3>
+                <p className="text-sm text-green-800 dark:text-green-200">
+                  查看今日、本月、总收益等详细财务数据
+                </p>
+              </div>
+              <div className="rounded-lg bg-green-50 p-4 dark:bg-green-900/20">
+                <h3 className="mb-2 font-semibold text-green-900 dark:text-green-100">
+                  📊 广告效果
+                </h3>
+                <p className="text-sm text-green-800 dark:text-green-200">
+                  分析广告点击率、展示次数、每千次展示收益
+                </p>
+              </div>
+              <div className="rounded-lg bg-green-50 p-4 dark:bg-green-900/20">
+                <h3 className="mb-2 font-semibold text-green-900 dark:text-green-100">
+                  🎯 优化建议
+                </h3>
+                <p className="text-sm text-green-800 dark:text-green-200">
+                  获取广告位优化建议，提高广告收益
+                </p>
+              </div>
+              <div className="rounded-lg bg-green-50 p-4 dark:bg-green-900/20">
+                <h3 className="mb-2 font-semibold text-green-900 dark:text-green-100">
+                  ⚙️ 广告管理
+                </h3>
+                <p className="text-sm text-green-800 dark:text-green-200">
+                  管理广告单元、广告样式、屏蔽控制等
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -331,73 +291,3 @@ export default function AnalyticsPage() {
   )
 }
 
-// 统计卡片组件
-function StatCard({
-  icon,
-  title,
-  value,
-  change,
-  isPositive,
-}: {
-  icon: React.ReactNode
-  title: string
-  value: string
-  change: string
-  isPositive: boolean
-}) {
-  return (
-    <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
-      <div className="flex items-center justify-between">
-        <div className="rounded-lg bg-blue-50 p-3 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400">
-          {icon}
-        </div>
-        <span
-          className={`text-sm font-semibold ${
-            isPositive ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'
-          }`}
-        >
-          {change}
-        </span>
-      </div>
-      <h3 className="mt-4 text-sm font-medium text-gray-600 dark:text-gray-400">{title}</h3>
-      <p className="mt-2 text-2xl font-bold text-gray-900 dark:text-white">{value}</p>
-    </div>
-  )
-}
-
-// 设备卡片组件
-function DeviceCard({
-  icon,
-  title,
-  percentage,
-  count,
-}: {
-  icon: React.ReactNode
-  title: string
-  percentage: string
-  count: string
-}) {
-  return (
-    <div className="rounded-lg border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-800">
-      <div className="flex items-center gap-3">
-        <div className="text-gray-400">{icon}</div>
-        <div>
-          <p className="text-sm font-medium text-gray-600 dark:text-gray-400">{title}</p>
-          <p className="text-xl font-bold text-gray-900 dark:text-white">{percentage}</p>
-          <p className="text-xs text-gray-500 dark:text-gray-500">{count} 访问</p>
-        </div>
-      </div>
-    </div>
-  )
-}
-
-// 收益卡片组件
-function RevenueCard({ title, value, change }: { title: string; value: string; change: string }) {
-  return (
-    <div className="rounded-lg border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800">
-      <p className="text-sm font-medium text-gray-600 dark:text-gray-400">{title}</p>
-      <p className="mt-2 text-3xl font-bold text-gray-900 dark:text-white">{value}</p>
-      <p className="mt-1 text-sm font-semibold text-green-600 dark:text-green-400">{change}</p>
-    </div>
-  )
-}
