@@ -5,8 +5,8 @@ import { defaultLanguage, languages } from '@/config/site'
 export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname
 
-  // 排除后台管理路由和 CMS 路由，不进行语言重定向
-  if (pathname.startsWith('/admin') || pathname.startsWith('/cms')) {
+  // 排除后台管理路由，不进行语言重定向
+  if (pathname.startsWith('/admin')) {
     return NextResponse.next()
   }
 
