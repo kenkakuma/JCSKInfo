@@ -1,5 +1,7 @@
 {
   "common": {
+    "home": "ホーム",
+    "posts": "記事",
     "readMore": "続きを読む",
     "readingTime": "分で読めます",
     "publishedOn": "公開日",

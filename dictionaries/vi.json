@@ -1,5 +1,7 @@
 {
   "common": {
+    "home": "Trang chủ",
+    "posts": "Bài viết",
     "readMore": "Đọc thêm",
     "readingTime": "phút đọc",
     "publishedOn": "Xuất bản vào",

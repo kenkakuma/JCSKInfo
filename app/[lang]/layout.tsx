@@ -11,6 +11,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: { lang: Language } }) {
   const config = siteConfig[params.lang]
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://jcski.com'
 
   return {
     title: {
@@ -18,12 +19,12 @@ export async function generateMetadata({ params }: { params: { lang: Language } 
       template: `%s | ${config.name}`,
     },
     description: config.description,
-    keywords: ['technology', 'reviews', 'affiliate', 'shopping'],
+    keywords: ['technology', 'reviews', 'affiliate', 'shopping', 'tech news', 'finance'],
     authors: [{ name: config.author.name }],
     creator: config.author.name,
     openGraph: {
       type: 'website',
-      locale: params.lang === 'vi' ? 'vi_VN' : 'ja_JP',
+      locale: params.lang === 'vi' ? 'vi_VN' : params.lang === 'ja' ? 'ja_JP' : 'en_US',
       url: config.url,
       title: config.name,
       description: config.description,
@@ -47,6 +48,10 @@ export async function generateMetadata({ params }: { params: { lang: Language } 
       languages: {
         vi: '/vi',
         ja: '/ja',
+        en: '/en',
+      },
+      types: {
+        'application/rss+xml': `${siteUrl}/${params.lang}/feed.xml`,
       },
     },
   }

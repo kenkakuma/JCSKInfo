@@ -124,33 +124,25 @@ export default function AnalyticsPage() {
             </a>
             <div className="mt-6 grid gap-4 text-left md:grid-cols-2">
               <div className="rounded-lg bg-blue-50 p-4 dark:bg-blue-900/20">
-                <h3 className="mb-2 font-semibold text-blue-900 dark:text-blue-100">
-                  📊 实时数据
-                </h3>
+                <h3 className="mb-2 font-semibold text-blue-900 dark:text-blue-100">📊 实时数据</h3>
                 <p className="text-sm text-blue-800 dark:text-blue-200">
                   查看当前访问者、实时页面浏览、活跃用户等
                 </p>
               </div>
               <div className="rounded-lg bg-blue-50 p-4 dark:bg-blue-900/20">
-                <h3 className="mb-2 font-semibold text-blue-900 dark:text-blue-100">
-                  📈 流量分析
-                </h3>
+                <h3 className="mb-2 font-semibold text-blue-900 dark:text-blue-100">📈 流量分析</h3>
                 <p className="text-sm text-blue-800 dark:text-blue-200">
                   分析流量来源、用户获取渠道、转化路径
                 </p>
               </div>
               <div className="rounded-lg bg-blue-50 p-4 dark:bg-blue-900/20">
-                <h3 className="mb-2 font-semibold text-blue-900 dark:text-blue-100">
-                  👥 用户行为
-                </h3>
+                <h3 className="mb-2 font-semibold text-blue-900 dark:text-blue-100">👥 用户行为</h3>
                 <p className="text-sm text-blue-800 dark:text-blue-200">
                   了解用户参与度、停留时间、跳出率等指标
                 </p>
               </div>
               <div className="rounded-lg bg-blue-50 p-4 dark:bg-blue-900/20">
-                <h3 className="mb-2 font-semibold text-blue-900 dark:text-blue-100">
-                  📱 设备分析
-                </h3>
+                <h3 className="mb-2 font-semibold text-blue-900 dark:text-blue-100">📱 设备分析</h3>
                 <p className="text-sm text-blue-800 dark:text-blue-200">
                   查看访问设备分布、浏览器、操作系统等
                 </p>
@@ -290,4 +282,3 @@ export default function AnalyticsPage() {
     </div>
   )
 }
-

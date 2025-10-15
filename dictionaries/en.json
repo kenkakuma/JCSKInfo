@@ -1,5 +1,7 @@
 {
   "common": {
+    "home": "Home",
+    "posts": "Posts",
     "readMore": "Read more",
     "readingTime": "min read",
     "publishedOn": "Published on",

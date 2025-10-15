@@ -11,6 +11,10 @@ import LanguageSwitcher from '@/components/LanguageSwitcher'
 import MDXContent from '@/components/MDXContent'
 import { DisplayAd, InArticleAd } from '@/components/AdSense'
 import { Metadata } from 'next'
+import { ArticleJsonLd, BreadcrumbJsonLd } from '@/components/JsonLd'
+import Breadcrumb from '@/components/Breadcrumb'
+import ReadingProgress from '@/components/ReadingProgress'
+import BackToTop from '@/components/BackToTop'
 
 export async function generateStaticParams() {
   return allPosts.map((post) => ({
@@ -32,10 +36,17 @@ export async function generateMetadata({
 
   const ogImage = post.image || `${process.env.NEXT_PUBLIC_SITE_URL}/og-${params.lang}.jpg`
 
+  // 生成 keywords
+  const keywords = [
+    ...(post.tags || []),
+    post.title.split(' ').slice(0, 3).join(' '), // 从标题提取关键词
+  ].join(', ')
+
   return {
     title: post.title,
     description: post.summary,
-    authors: [{ name: 'JCSKInfo Team' }],
+    keywords: keywords,
+    authors: [{ name: 'JetCode·SKI Team' }],
     openGraph: {
       title: post.title,
       description: post.summary,
@@ -83,37 +94,29 @@ export default async function PostPage({ params }: { params: { lang: Language; s
     params.lang === 'vi' ? 'ja' : 'vi'
   )
 
-  // 生成结构化数据
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
-    headline: post.title,
-    description: post.summary,
-    image: post.image,
-    datePublished: post.date,
-    dateModified: post.date,
-    author: {
-      '@type': 'Organization',
-      name: 'JCSKInfo Team',
-    },
-    publisher: {
-      '@type': 'Organization',
-      name: 'JCSKInfo',
-      logo: {
-        '@type': 'ImageObject',
-        url: `${process.env.NEXT_PUBLIC_SITE_URL}/logo.png`,
-      },
-    },
-  }
+  // 面包屑导航数据
+  const breadcrumbItems = [
+    { name: dict.common.posts, url: `/${params.lang}/posts` },
+    { name: post.title, url: post.url },
+  ]
+
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://jcski.com'
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      {/* 阅读进度条 */}
+      <ReadingProgress />
+
+      {/* 结构化数据 - Article */}
+      <ArticleJsonLd post={post} url={`${siteUrl}${post.url}`} />
+
+      {/* 结构化数据 - Breadcrumb */}
+      <BreadcrumbJsonLd items={breadcrumbItems.map((item) => ({ name: item.name, url: `${siteUrl}${item.url}` }))} />
 
       <article className="container mx-auto px-4 py-12">
+        {/* 面包屑导航 */}
+        <Breadcrumb items={breadcrumbItems} lang={params.lang} homeLabel={dict.common.home} />
+
         {/* 语言切换器 */}
         <div className="mb-6 flex justify-end">
           <LanguageSwitcher currentLang={params.lang} translationUrl={translatedPost?.url} />
@@ -187,6 +190,9 @@ export default async function PostPage({ params }: { params: { lang: Language; s
           <RelatedPosts posts={relatedPosts} title={dict.common.relatedPosts} />
         </div>
       </article>
+
+      {/* 返回顶部按钮 */}
+      <BackToTop />
     </>
   )
 }

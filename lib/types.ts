@@ -5,6 +5,8 @@ export type { Post, Language }
 
 export interface Dictionary {
   common: {
+    home: string
+    posts: string
     readMore: string
     readingTime: string
     publishedOn: string
