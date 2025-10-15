@@ -9,6 +9,7 @@ import ShareButtons from '@/components/ShareButtons'
 import RelatedPosts from '@/components/RelatedPosts'
 import LanguageSwitcher from '@/components/LanguageSwitcher'
 import MDXContent from '@/components/MDXContent'
+import { DisplayAd, InArticleAd } from '@/components/AdSense'
 import { Metadata } from 'next'
 
 export async function generateStaticParams() {
@@ -156,9 +157,19 @@ export default async function PostPage({ params }: { params: { lang: Language; s
           </div>
         )}
 
+        {/* 顶部广告 - 响应式展示广告 */}
+        <div className="mx-auto mb-8 max-w-3xl">
+          <DisplayAd adSlot="1234567890" />
+        </div>
+
         {/* 文章内容 */}
         <div className="prose prose-lg mx-auto dark:prose-dark">
           <MDXContent code={post.body.code} />
+        </div>
+
+        {/* 文章内广告 */}
+        <div className="mx-auto my-8 max-w-3xl">
+          <InArticleAd adSlot="1234567891" />
         </div>
 
         {/* 分享按钮 */}
