@@ -90,7 +90,7 @@ collections:
       - label: '特色图片 (Featured Image)'
         name: 'image'
         widget: 'image'
-        hint: '⚠️ 建议添加 - 点击选择或上传图片，建议尺寸 1200x630，用于社交媒体分享'
+        hint: '💡 可选 - 如果不设置，系统会自动使用正文中的第一张图片作为特色图片。建议尺寸 1200x630'
         required: false
         media_library:
           config:
@@ -163,7 +163,7 @@ collections:
       - label: '特色图片 (アイキャッチ画像)'
         name: 'image'
         widget: 'image'
-        hint: '点击选择或上传图片'
+        hint: '💡 可选 - 如果不设置，系统会自动使用正文中的第一张图片作为特色图片'
         required: false
         media_library:
           config:
@@ -236,7 +236,7 @@ collections:
       - label: 'Featured Image'
         name: 'image'
         widget: 'image'
-        hint: 'Click to select or upload image'
+        hint: '💡 Optional - If not set, system will auto-extract the first image from the content'
         required: false
         media_library:
           config:

@@ -72,6 +72,35 @@ export const Post = defineDocumentType(() => ({
         return `/${lang}/posts/${slug}`
       },
     },
+    image: {
+      type: 'string',
+      resolve: (doc) => {
+        // 如果 frontmatter 中已经设置了 image，优先使用
+        if (doc.image) {
+          return doc.image
+        }
+        
+        // 否则从正文中提取第一张图片
+        const content = doc.body.raw
+        
+        // 匹配 Markdown 图片语法: ![alt](url)
+        const markdownImageRegex = /!\[.*?\]\((https?:\/\/[^\s)]+)\)/
+        const markdownMatch = content.match(markdownImageRegex)
+        if (markdownMatch) {
+          return markdownMatch[1]
+        }
+        
+        // 匹配 HTML img 标签: <img src="url" />
+        const htmlImageRegex = /<img[^>]+src=["']([^"']+)["']/
+        const htmlMatch = content.match(htmlImageRegex)
+        if (htmlMatch) {
+          return htmlMatch[1]
+        }
+        
+        // 如果都没有找到，返回 undefined
+        return undefined
+      },
+    },
   },
 }))
 
