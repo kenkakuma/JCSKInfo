@@ -69,6 +69,19 @@ export interface DashboardStats {
     date: string
     draft: boolean
   }>
+  languageStats?: {
+    vi: number
+    ja: number
+    en: number
+  }
+  topTags?: Array<{
+    tag: string
+    count: number
+  }>
+  monthlyPosts?: Array<{
+    month: string
+    count: number
+  }>
 }
 
 // API 响应类型

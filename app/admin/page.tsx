@@ -178,12 +178,72 @@ export default function AdminDashboard() {
         </div>
       </div>
 
+      {/* 更多统计数据 */}
+      <div className="mt-6 grid gap-6 lg:grid-cols-2">
+        {/* 热门标签 */}
+        {stats?.topTags && stats.topTags.length > 0 && (
+          <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-900">
+            <h2 className="mb-4 text-lg font-semibold text-gray-900 dark:text-gray-100">
+              📌 热门标签
+            </h2>
+            <div className="space-y-2">
+              {stats.topTags.map((item, index) => (
+                <div key={item.tag} className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <span className="flex h-6 w-6 items-center justify-center rounded-full bg-primary-100 text-xs font-bold text-primary-600 dark:bg-primary-900/30 dark:text-primary-400">
+                      {index + 1}
+                    </span>
+                    <span className="rounded-full bg-gray-100 px-3 py-1 text-sm font-medium text-gray-700 dark:bg-gray-800 dark:text-gray-300">
+                      {item.tag}
+                    </span>
+                  </div>
+                  <span className="text-sm font-bold text-gray-900 dark:text-gray-100">
+                    {item.count} 篇
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* 月度发布趋势 */}
+        {stats?.monthlyPosts && stats.monthlyPosts.length > 0 && (
+          <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-900">
+            <h2 className="mb-4 text-lg font-semibold text-gray-900 dark:text-gray-100">
+              📈 发布趋势（最近6个月）
+            </h2>
+            <div className="space-y-3">
+              {stats.monthlyPosts.map((item) => (
+                <div key={item.month}>
+                  <div className="mb-1 flex items-center justify-between text-sm">
+                    <span className="font-medium text-gray-700 dark:text-gray-300">
+                      {item.month}
+                    </span>
+                    <span className="font-bold text-gray-900 dark:text-gray-100">
+                      {item.count} 篇
+                    </span>
+                  </div>
+                  <div className="h-2 w-full overflow-hidden rounded-full bg-gray-100 dark:bg-gray-800">
+                    <div
+                      className="h-full rounded-full bg-gradient-to-r from-primary-500 to-primary-600 transition-all"
+                      style={{
+                        width: `${Math.max((item.count / Math.max(...stats.monthlyPosts!.map((m) => m.count))) * 100, 5)}%`,
+                      }}
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+
       {/* 功能预告 */}
       <div className="mt-6 rounded-xl border border-blue-200 bg-blue-50 p-6 dark:border-blue-900/50 dark:bg-blue-900/20">
         <h3 className="mb-2 font-semibold text-blue-900 dark:text-blue-400">🚀 即将推出</h3>
         <ul className="space-y-1 text-sm text-blue-800 dark:text-blue-300">
-          <li>• 图片管理 - 统一管理和优化图片资源</li>
-          <li>• AI 自动化 - 智能生成摘要和标签</li>
+          <li>• 真实访问统计 - 集成 Google Analytics 4 数据</li>
+          <li>• 文章浏览量排行 - 基于真实浏览数据</li>
           <li>• 盈利分析 - 联盟链接和广告收入统计</li>
         </ul>
       </div>

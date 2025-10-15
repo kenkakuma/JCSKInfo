@@ -22,26 +22,40 @@
     @apply bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100;
   }
 
-  /* 平滑主题过渡动画 */
-  html {
+  /* 平滑主题过渡动画 - 优化性能 */
+  html,
+  body {
     transition:
-      background-color 0.3s ease,
-      color 0.3s ease;
+      background-color 0.15s ease-in-out,
+      color 0.15s ease-in-out;
   }
 
-  body,
-  * {
-    transition-property: background-color, border-color, color, fill, stroke;
-    transition-duration: 0.2s;
-    transition-timing-function: ease-in-out;
+  /* 只为特定元素添加过渡，避免全局 * 选择器 */
+  article,
+  section,
+  nav,
+  header,
+  footer,
+  div[class*='bg-'],
+  div[class*='text-'],
+  button,
+  a {
+    transition:
+      background-color 0.15s ease-in-out,
+      border-color 0.15s ease-in-out,
+      color 0.15s ease-in-out;
   }
 
   /* 排除某些不需要过渡的元素 */
   input,
   textarea,
   select,
-  button:active,
-  [data-no-transition] {
+  img,
+  video,
+  iframe,
+  [data-no-transition],
+  *[class*='animate-'],
+  *[class*='transition-'] {
     transition: none !important;
   }
 }
