@@ -18,6 +18,7 @@
 ### ✨ 新增功能
 
 #### 内容管理系统 (CMS)
+
 - **集成 Sveltia CMS**：轻量级、现代化的 Git-based 内容管理系统
 - **在线文章编辑**：无需本地环境，直接在浏览器中编辑文章
 - **多语言支持**：完整支持越南语、日语、英语三语种文章管理
@@ -27,11 +28,13 @@
 - **自动部署**：保存文章后自动触发 Vercel 部署
 
 #### 认证系统
+
 - **Personal Access Token 认证**：简单、安全的 GitHub Token 认证方式
 - **嵌入式 CMS**：集成到现有后台管理系统，受 JWT 认证保护
 - **双重安全保护**：后台登录 + GitHub Token 双重验证
 
 #### 用户体验
+
 - **统一管理界面**：CMS 无缝集成到 `/admin/posts` 路径
 - **响应式设计**：支持桌面和移动端访问
 - **深色模式支持**：CMS 界面支持深色模式
@@ -39,16 +42,19 @@
 ### 🔧 技术改进
 
 #### 架构优化
+
 - 移除旧的文件系统文章编辑功能（不适用于 Vercel）
 - 采用 Git-based 工作流，完美适配 Vercel 无服务器架构
 - 创建自定义 OAuth 代理 API（`/api/cms/auth`）
 
 #### 配置文件
+
 - 添加 `public/cms/config.yml`：Sveltia CMS 配置文件
 - 添加 `public/cms/index.html`：CMS 入口文件
 - 更新 `middleware.ts`：排除 CMS 路由的语言重定向
 
 #### 文件结构
+
 ```
 public/cms/
 ├── index.html       # CMS 入口
@@ -64,12 +70,14 @@ app/admin/posts/
 ### 📚 文档更新
 
 #### 新增文档
+
 - `SVELTIA_CMS_USAGE.md`：用户使用指南（推荐阅读）
 - `SVELTIA_CMS_SETUP.md`：技术集成文档
 - `SVELTIA_INTEGRATION.md`：架构说明文档
 - `CHANGELOG.md`：版本更新日志（本文件）
 
 #### 更新文档
+
 - `README.md`：添加 CMS 功能说明
 - `VERCEL_LIMITATIONS.md`：更新解决方案
 - `.vercel-credentials.md`：添加 GitHub Token 配置
@@ -77,11 +85,13 @@ app/admin/posts/
 ### 🗑️ 移除功能
 
 #### 已移除文件
+
 - `app/admin/posts/new/page.tsx`：旧的新建文章页面
 - `app/admin/posts/edit/[lang]/[slug]/page.tsx`：旧的编辑文章页面
 - `/app/cms/page.tsx`：独立 CMS 入口（改为嵌入式）
 
 #### 移除原因
+
 - 旧的文件系统编辑功能不适用于 Vercel 只读文件系统
 - 改用 Git-based 工作流，通过 GitHub API 管理内容
 
@@ -107,6 +117,7 @@ app/admin/posts/
 ### 🎯 工作流程
 
 #### 内容发布流程（全自动）
+
 1. 在 CMS 中编辑文章
 2. 点击 "Save"
 3. Sveltia CMS 自动提交到 GitHub
@@ -117,6 +128,7 @@ app/admin/posts/
 ### 📝 使用说明
 
 #### 快速开始
+
 1. 创建 GitHub Personal Access Token
 2. 访问 `https://jcski.com/admin/login` 登录后台
 3. 进入 "文章管理"
@@ -145,18 +157,38 @@ app/admin/posts/
 ### 🎉 新增功能
 
 #### 图片管理系统
+
 - **Cloudinary 集成**：完整的图片上传和管理系统
 - **自动优化**：自动压缩和 WebP 转换
 - **CDN 加速**：全球 CDN 分发，加载速度提升
 - **响应式图片**：自动生成多尺寸图片
 
 #### 图片上传 API
+
 - **上传接口**：`POST /api/upload/image` - 支持图片上传
 - **配置接口**：`GET /api/upload/image` - 获取上传配置
-- **文件验证**：类型和大小验证（最大 10MB）
+- **文件验证**：类型和大小验证（最大 20MB）
 - **自动优化**：上传时自动优化图片
 
+#### 特色图片增强
+
+- **双模式支持**：支持上传图片和引用外部 URL
+- **Cloudinary 上传**：直接在 CMS 中上传特色图片
+- **外部 URL**：继续支持引用 Unsplash 等图床
+- **灵活选择**：根据需求选择最合适的方式
+
+#### 文章图片增强 ⭐ 新增
+
+- **ImageWithCaption 组件**：全新的图片展示组件
+- **对齐方式**：支持左对齐、居中、右对齐
+- **图片说明**：自动显示 caption 文字
+- **自定义尺寸**：灵活设置 width 和 height
+- **自动美化**：圆角、阴影效果
+- **响应式设计**：自动适配移动端
+- **暗黑模式**：自动适配主题
+
 #### 工具函数
+
 - **图片优化**：`getOptimizedImageUrl()` - 获取优化后的图片 URL
 - **响应式图片**：`getResponsiveSrcSet()` - 生成 srcset
 - **缩略图**：`getThumbnailUrl()` - 快速生成缩略图
@@ -165,23 +197,61 @@ app/admin/posts/
 ### 🔧 技术改进
 
 #### Sveltia CMS 增强
+
 - 集成 Cloudinary 媒体库
 - 支持直接在 CMS 中上传图片
 - 自动返回优化后的图片 URL
+- `image` widget 类型从 `string` 改为 `image`
+
+#### MDX 组件增强
+
+- 添加 `ImageWithCaption` 组件到 MDX Components
+- 支持 JSX 语法在 Markdown 中使用
+- 自动应用 Tailwind CSS 样式
 
 #### Middleware 优化
+
 - 排除 `/api` 路由的语言重定向
 - 提升 API 响应速度
 
 ### 📚 文档更新
 
-- 添加 Cloudinary 集成文档
+- **新增**：`IMAGE_USAGE_GUIDE.md` - 完整的图片使用指南
+- **新增**：`CLOUDINARY_SETUP.md` - Cloudinary 集成文档
 - 更新图片上传使用指南
 
 ### 🐛 问题修复
 
 - 修复 middleware 处理 API 路由导致的错误
 - 修复端口冲突问题
+- 修复图片上传大小限制（从 10MB 提升到 20MB）
+
+### 💡 使用示例
+
+#### ImageWithCaption 组件使用
+
+```jsx
+<ImageWithCaption
+  src="https://res.cloudinary.com/dt@hpzm21/image/upload/v123/jcski-posts/image.jpg"
+  alt="图片描述"
+  caption="图片说明文字"
+  align="center" // left | center | right
+  width={800}
+  height={600}
+/>
+```
+
+#### 特色图片 - 上传方式
+
+```yaml
+image: 'https://res.cloudinary.com/dt@hpzm21/image/upload/v123/jcski-posts/featured.jpg'
+```
+
+#### 特色图片 - 外部 URL
+
+```yaml
+image: 'https://images.unsplash.com/photo-xxxxx'
+```
 
 ---
 
@@ -194,12 +264,14 @@ JetCode·SKI 多语言资讯聚合平台首次发布。
 ### ✨ 核心功能
 
 #### 多语言支持
+
 - **三语种支持**：越南语（vi）、日语（ja）、英语（en）
 - **自动语言检测**：根据浏览器设置自动选择语言
 - **语言切换**：顶部导航栏支持一键切换
 - **URL 国际化**：`/vi/`, `/ja/`, `/en/` 路径前缀
 
 #### 内容展示
+
 - **首页布局**：Hero Card + 标准卡片网格布局
 - **文章列表**：分页展示，支持筛选和排序
 - **文章详情**：Markdown/MDX 渲染，代码高亮
@@ -207,12 +279,14 @@ JetCode·SKI 多语言资讯聚合平台首次发布。
 - **相关文章推荐**：基于标签的智能推荐
 
 #### 右侧小组件
+
 - **市场行情**：实时股市数据（模拟）
 - **热门公司**：科技公司股票信息
 - **加密货币**：加密货币实时价格
 - **天气信息**：多城市天气显示
 
 #### 后台管理系统
+
 - **JWT 认证**：安全的身份验证
 - **仪表盘**：文章统计、访问数据
 - **文章管理**：CRUD 操作（本地模式）
@@ -220,6 +294,7 @@ JetCode·SKI 多语言资讯聚合平台首次发布。
 - **深色模式**：支持明暗主题切换
 
 #### 技术栈
+
 - **框架**：Next.js 14 (App Router)
 - **语言**：TypeScript
 - **样式**：Tailwind CSS
@@ -237,12 +312,14 @@ JetCode·SKI 多语言资讯聚合平台首次发布。
 ### 🔧 配置
 
 #### 环境变量
+
 - `ADMIN_USERNAME`：后台管理员用户名
 - `ADMIN_PASSWORD`：后台管理员密码
 - `JWT_SECRET`：JWT 签名密钥
 - `NEXT_PUBLIC_SITE_URL`：网站 URL
 
 #### 部署
+
 - **平台**：Vercel
 - **域名**：jcski.com / www.jcski.com
 - **自动部署**：推送到 GitHub 自动触发
@@ -271,6 +348,7 @@ JetCode·SKI 多语言资讯聚合平台首次发布。
 - **预发布标识**：`alpha`, `beta`, `rc`（候选版本）
 
 ### 示例
+
 - `0.1.0-beta`：Beta 测试版本
 - `0.2.0-beta`：Beta 测试版本，新增功能
 - `1.0.0`：正式发布版本
@@ -325,4 +403,3 @@ git push origin main --tags
 
 **版本历史**: [GitHub Releases](https://github.com/kenkakuma/JCSKInfo/releases)  
 **问题反馈**: [GitHub Issues](https://github.com/kenkakuma/JCSKInfo/issues)
-
