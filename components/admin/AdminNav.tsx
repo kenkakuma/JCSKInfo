@@ -85,11 +85,11 @@ export default function AdminNav() {
                     >
                       <Icon size={20} />
                       <span className="flex-1">{item.label}</span>
-                      {item.badge && (
+                      {'badge' in item && item.badge ? (
                         <span className="rounded-full bg-yellow-100 px-2 py-0.5 text-xs text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400">
-                          {item.badge}
+                          {item.badge as string}
                         </span>
-                      )}
+                      ) : null}
                     </Link>
                   </li>
                 )

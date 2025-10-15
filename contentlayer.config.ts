@@ -92,7 +92,7 @@ export default makeSource({
         },
       ],
       [
-        rehypePrettyCode,
+        rehypePrettyCode as any,
         {
           theme: 'github-dark',
           keepBackground: false,

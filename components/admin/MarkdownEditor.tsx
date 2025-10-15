@@ -236,7 +236,7 @@ function convertMarkdownToHtml(markdown: string): string {
 
   // 列表
   html = html.replace(/^\* (.+)$/gim, '<li>$1</li>')
-  html = html.replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>')
+  html = html.replace(/(<li>[\s\S]*<\/li>)/, '<ul>$1</ul>')
 
   // 换行
   html = html.replace(/\n/g, '<br />')
