@@ -102,9 +102,9 @@ export default function MasonryNewsCard({
         <article className="group h-full cursor-pointer">
           <div className="h-full overflow-hidden rounded-xl bg-transparent transition-colors duration-300">
             <div className="grid h-64 md:grid-cols-3">
-              {/* 左侧图片 - 占1/3，四圆角居中 */}
+              {/* 左侧图片 - 固定高度 h-48，与小卡片一致 */}
               <div className="relative flex h-64 items-center justify-center p-3">
-                <div className="relative h-56 w-full overflow-hidden rounded-xl">
+                <div className="relative h-48 w-full overflow-hidden rounded-xl">
                   {post.image ? (
                     <Image
                       src={post.image}
@@ -229,9 +229,9 @@ export default function MasonryNewsCard({
                 </div>
               </div>
 
-              {/* 右侧图片 - 占1/3，四圆角居中 */}
+              {/* 右侧图片 - 固定高度 h-48，与小卡片一致 */}
               <div className="relative flex h-64 items-center justify-center p-3">
-                <div className="relative h-56 w-full overflow-hidden rounded-xl">
+                <div className="relative h-48 w-full overflow-hidden rounded-xl">
                   {post.image ? (
                     <Image
                       src={post.image}
