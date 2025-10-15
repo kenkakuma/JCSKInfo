@@ -6,6 +6,8 @@ backend:
   name: github
   repo: kenkakuma/JCSKInfo
   branch: main
+  # 使用 GitHub App 直接认证（最简单的方式）
+  # 或者使用 Git Gateway（需要单独配置）
 
 # 媒体文件配置
 media_folder: public/images/posts
