@@ -6,7 +6,8 @@ export const defaultLanguage: Language = 'ja'
 export const siteConfig = {
   vi: {
     name: 'JetCode·SKI',
-    description: 'Theo Dõi Đổi Mới, Cung Cấp Thông Tin',
+    description:
+      'Nền tảng nội dung do AI xây dựng, tuyển chọn tin tức và quan điểm có giá trị. Claude phát triển hoàn toàn từ kiến trúc đến code. Minh chứng cho việc AI đang viết lại rào cản phát triển ứng dụng. Cảm ơn cộng đồng mã nguồn mở đã tạo nên thời đại này.',
     url: 'https://jcski.com',
     ogImage: 'https://jcski.com/og-vi.jpg',
     links: {
@@ -20,7 +21,8 @@ export const siteConfig = {
   },
   ja: {
     name: 'JetCode·SKI',
-    description: 'イノベーションを追跡し、洞察を提供',
+    description:
+      'AIが構築したコンテンツプラットフォーム。アーキテクチャからコードまで、全てClaudeが開発しました。AIが開発パートナーとなり、アプリ構築の敷居を書き換える時代の証です。この時代を実現したオープンソースコミュニティに感謝します。',
     url: 'https://jcski.com',
     ogImage: 'https://jcski.com/og-ja.jpg',
     links: {
@@ -34,7 +36,8 @@ export const siteConfig = {
   },
   en: {
     name: 'JetCode·SKI',
-    description: 'Tracking Innovation, Delivering Insights',
+    description:
+      'An AI-built content platform curating news and insights I find valuable. Fully developed by Claude from architecture to code. This demonstrates how AI partners are rewriting the barrier to app development. Thanks to the open-source community for making this era possible.',
     url: 'https://jcski.com',
     ogImage: 'https://jcski.com/og-en.jpg',
     links: {

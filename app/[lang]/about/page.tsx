@@ -23,65 +23,76 @@ export default async function AboutPage({ params }: { params: { lang: Language }
     {
       title: string
       description: string[]
-      coverage: string
-      coverageItems: string
-      audience: string
-      audienceItems: string
+      techStack: string
+      techStackItems: string[]
     }
   > = {
     vi: {
       title: 'Về JetCode·SKI',
       description: [
-        'JetCode·SKI là nền tảng thông tin chuyên nghiệp',
-        'tập trung vào công nghệ tiên tiến và tài chính.',
+        'Đây là một nền tảng tổng hợp nội dung được xây dựng hoàn toàn bởi AI, tuyển chọn những tin tức và quan điểm mà tôi cho là đáng đọc. Từ lựa chọn công nghệ, thiết kế kiến trúc đến từng dòng code, tất cả đều do Claude phát triển độc lập. Đây vừa là một thí nghiệm công nghệ, vừa là một tín hiệu: khi AI trở thành đối tác phát triển của bạn, rào cản xây dựng ứng dụng nhẹ đã được viết lại hoàn toàn.',
         '',
-        'Chúng tôi theo dõi đột phá AI, động thái các công ty công nghệ,',
-        'và xu hướng đổi mới tài chính, mang đến góc nhìn chất lượng cao',
-        'cho các chuyên gia công nghệ và nhà đổi mới.',
+        'Xin cảm ơn cộng đồng mã nguồn mở và vô số lập trình viên, nhờ sự tích lũy và cải tiến công nghệ của họ mà thời đại này mới có thể thành hiện thực.',
       ],
-      coverage: '🎯 Nội Dung Chính:',
-      coverageItems:
-        'Trí Tuệ Nhân Tạo | Công Nghệ Tiên Tiến | Tin Công Ty Tech | Fintech | Thị Trường Châu Á',
-      audience: '💡 Dành Cho:',
-      audienceItems: 'Chuyên Gia Tech • Doanh Nhân • Nhà Đầu Tư • Phân Tích Ngành • Nhà Đổi Mới',
+      techStack: '🛠️ Công Nghệ Sử Dụng',
+      techStackItems: [
+        'Next.js 13 (App Router) - React framework',
+        'TypeScript - Type safety',
+        'Tailwind CSS - Styling',
+        'Contentlayer - MDX content management',
+        'Cloudinary - Image hosting & optimization',
+        'Sveltia CMS - Headless CMS',
+        'GitHub OAuth - Authentication',
+        'Google Analytics & AdSense - Analytics & monetization',
+        'Vercel - Deployment & hosting',
+      ],
     },
     ja: {
       title: 'JetCode·SKIについて',
       description: [
-        'JetCode·SKIは、先端テクノロジーと金融分野に特化した',
-        'プロフェッショナル情報プラットフォームです。',
+        'これは完全にAIによって構築されたコンテンツ集約プラットフォームで、私が読む価値があると考えるニュースや見解を収録しています。技術選定、アーキテクチャ設計から全てのコードに至るまで、Claudeが単独で開発しました。これは技術実験であると同時に、一つのシグナルでもあります：AIが開発パートナーとなる時代、軽量アプリケーション構築の敷居は根本的に書き換えられたのです。',
         '',
-        'AI技術の突破、テック企業の動向、金融イノベーションのトレンドを追跡し、',
-        '技術従事者とイノベーターに質の高い業界洞察を提供します。',
+        'オープンソースコミュニティと無数の開発者たちの技術蓄積と反復があったからこそ、今の時代が実現しました。感謝します。',
       ],
-      coverage: '🎯 コアコンテンツ：',
-      coverageItems: '人工知能 | 先端技術 | テック企業動向 | フィンテック | アジア市場',
-      audience: '💡 対象：',
-      audienceItems: '技術従事者 • 起業家 • 投資家 • 業界アナリスト • イノベーター',
+      techStack: '🛠️ 使用技術',
+      techStackItems: [
+        'Next.js 13 (App Router) - Reactフレームワーク',
+        'TypeScript - 型安全性',
+        'Tailwind CSS - スタイリング',
+        'Contentlayer - MDXコンテンツ管理',
+        'Cloudinary - 画像ホスティング・最適化',
+        'Sveltia CMS - ヘッドレスCMS',
+        'GitHub OAuth - 認証',
+        'Google Analytics & AdSense - 分析・収益化',
+        'Vercel - デプロイ・ホスティング',
+      ],
     },
     en: {
       title: 'About JetCode·SKI',
       description: [
-        'JetCode·SKI is a professional intelligence platform',
-        'focused on cutting-edge technology and finance.',
+        'This is a content aggregation platform entirely built by AI, curating news and insights I find worth reading. From technical decisions and architecture design to every line of code, it was independently developed by Claude. This is both a technical experiment and a signal: when AI becomes your development partner, the barrier to building lightweight applications has been fundamentally rewritten.',
         '',
-        'We track AI breakthroughs, tech company developments,',
-        'and financial innovation trends, delivering high-quality',
-        'industry insights for tech professionals and innovators.',
+        'Thanks to the open-source community and countless developers whose technical accumulation and iteration have made this era possible.',
       ],
-      coverage: '🎯 Core Coverage:',
-      coverageItems:
-        'Artificial Intelligence | Cutting-Edge Tech | Tech Companies | Fintech | Asian Markets',
-      audience: '💡 For:',
-      audienceItems:
-        'Tech Professionals • Entrepreneurs • Investors • Industry Analysts • Innovators',
+      techStack: '🛠️ Tech Stack',
+      techStackItems: [
+        'Next.js 13 (App Router) - React framework',
+        'TypeScript - Type safety',
+        'Tailwind CSS - Styling',
+        'Contentlayer - MDX content management',
+        'Cloudinary - Image hosting & optimization',
+        'Sveltia CMS - Headless CMS',
+        'GitHub OAuth - Authentication',
+        'Google Analytics & AdSense - Analytics & monetization',
+        'Vercel - Deployment & hosting',
+      ],
     },
   }
 
   const text = content[params.lang]
 
   return (
-    <div className="container mx-auto px-4 py-12 font-mono">
+    <div className="container mx-auto px-4 py-12">
       <div className="mx-auto max-w-4xl">
         <h1 className="mb-12 text-center text-5xl font-thin text-gray-900 dark:text-gray-100">
           {text.title}
@@ -93,8 +104,8 @@ export default async function AboutPage({ params }: { params: { lang: Language }
             {text.description.map((line, index) => (
               <p
                 key={index}
-                className={`text-xl font-thin ${line === '' ? 'mb-4' : ''} ${
-                  index === 0 || index === 1
+                className={`text-lg leading-relaxed ${line === '' ? 'mb-4' : 'mb-2'} ${
+                  index === 0
                     ? 'text-gray-900 dark:text-gray-100'
                     : 'text-gray-700 dark:text-gray-300'
                 }`}
@@ -104,24 +115,22 @@ export default async function AboutPage({ params }: { params: { lang: Language }
             ))}
           </div>
 
-          {/* 核心内容 */}
+          {/* 技术栈 */}
           <div className="rounded-2xl border border-gray-200 bg-white p-8 dark:border-gray-700 dark:bg-gray-800">
-            <h2 className="mb-4 text-2xl font-thin text-gray-900 dark:text-gray-100">
-              {text.coverage}
+            <h2 className="mb-6 text-2xl font-semibold text-gray-900 dark:text-gray-100">
+              {text.techStack}
             </h2>
-            <p className="text-lg font-thin leading-relaxed text-gray-700 dark:text-gray-300">
-              {text.coverageItems}
-            </p>
-          </div>
-
-          {/* 目标受众 */}
-          <div className="rounded-2xl border border-gray-200 bg-white p-8 dark:border-gray-700 dark:bg-gray-800">
-            <h2 className="mb-4 text-2xl font-thin text-gray-900 dark:text-gray-100">
-              {text.audience}
-            </h2>
-            <p className="text-lg font-thin leading-relaxed text-gray-700 dark:text-gray-300">
-              {text.audienceItems}
-            </p>
+            <ul className="grid gap-3 sm:grid-cols-2">
+              {text.techStackItems.map((item, index) => (
+                <li
+                  key={index}
+                  className="flex items-start gap-2 text-gray-700 dark:text-gray-300"
+                >
+                  <span className="mt-1 text-primary-600 dark:text-primary-400">▹</span>
+                  <span className="text-sm leading-relaxed">{item}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>
