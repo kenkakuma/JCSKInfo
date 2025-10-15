@@ -83,8 +83,9 @@ export const Post = defineDocumentType(() => ({
         // 否则从正文中提取第一张图片
         const content = doc.body.raw
         
-        // 匹配 Markdown 图片语法: ![alt](url)
-        const markdownImageRegex = /!\[.*?\]\((https?:\/\/[^\s)]+)\)/
+        // 匹配 Markdown 图片语法: ![alt](url) 
+        // 支持绝对路径 (https://...) 和相对路径 (/images/...)
+        const markdownImageRegex = /!\[.*?\]\(([^\s)]+)\)/
         const markdownMatch = content.match(markdownImageRegex)
         if (markdownMatch) {
           return markdownMatch[1]

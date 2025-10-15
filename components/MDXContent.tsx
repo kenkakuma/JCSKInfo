@@ -13,7 +13,7 @@ export default function MDXContent({ code, skipFirstImage = false }: MDXContentP
   const Component = useMDXComponent(code)
   const imageCountRef = useRef(0)
 
-  // 创建包装的图片组件
+  // 创建包装的图片组件 - 默认居中
   const WrappedImage = (props: any) => {
     if (skipFirstImage) {
       imageCountRef.current += 1
@@ -23,9 +23,17 @@ export default function MDXContent({ code, skipFirstImage = false }: MDXContentP
       }
     }
 
-    // 如果 props 中有 src，使用标准的 img 标签（MDX 自动转换）
-    // eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text
-    return <img {...props} className="rounded-lg" />
+    // 所有图片默认居中并添加样式
+    return (
+      <figure className="my-8 text-center">
+        {/* eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text */}
+        <img
+          {...props}
+          className="inline-block rounded-lg shadow-lg mx-auto max-w-full h-auto"
+          loading="lazy"
+        />
+      </figure>
+    )
   }
 
   const customComponents = {

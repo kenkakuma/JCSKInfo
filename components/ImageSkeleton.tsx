@@ -14,6 +14,7 @@ interface ImageSkeletonProps extends Omit<ImageProps, 'onLoad' | 'onError'> {
  * - 加载时显示骨架屏动画
  * - 加载失败时显示优雅的回退
  * - 支持所有 Next/Image 属性
+ * - 自动检测本地图片路径（/images/...）并使用 unoptimized 模式
  */
 export default function ImageSkeleton({
   fallbackSrc,
@@ -36,6 +37,10 @@ export default function ImageSkeleton({
 
   // 如果有 fallbackSrc 且发生错误，使用 fallbackSrc
   const imageSrc = error && fallbackSrc ? fallbackSrc : props.src
+
+  // 检查是否是本地图片路径（以 / 开头但不是 http(s)://）
+  const isLocalImage =
+    typeof imageSrc === 'string' && imageSrc.startsWith('/') && !imageSrc.startsWith('//')
 
   if (error && !fallbackSrc) {
     // 显示优雅的回退 UI
@@ -68,7 +73,8 @@ export default function ImageSkeleton({
         className={`transition-opacity duration-300 ${loading ? 'opacity-0' : 'opacity-100'} ${className}`}
         onLoad={handleLoad}
         onError={handleError}
-        unoptimized={false}
+        // 本地图片使用 unoptimized 模式，避免优化 API 错误
+        unoptimized={isLocalImage}
       />
     </>
   )
