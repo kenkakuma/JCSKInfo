@@ -86,9 +86,12 @@ collections:
 
       - label: '特色图片 (Featured Image)'
         name: 'image'
-        widget: 'string'
-        hint: '图片 URL，如: /images/posts/article-name.jpg'
+        widget: 'image'
+        hint: '点击选择或上传图片'
         required: false
+        media_library:
+          config:
+            multiple: false
 
       - label: '草稿状态 (Draft)'
         name: 'draft'
@@ -156,9 +159,12 @@ collections:
 
       - label: '特色图片 (アイキャッチ画像)'
         name: 'image'
-        widget: 'string'
-        hint: '图片 URL，如: /images/posts/article-name.jpg'
+        widget: 'image'
+        hint: '点击选择或上传图片'
         required: false
+        media_library:
+          config:
+            multiple: false
 
       - label: '草稿状态 (下書き)'
         name: 'draft'
@@ -226,9 +232,12 @@ collections:
 
       - label: 'Featured Image'
         name: 'image'
-        widget: 'string'
-        hint: 'Image URL, e.g.: /images/posts/article-name.jpg'
+        widget: 'image'
+        hint: 'Click to select or upload image'
         required: false
+        media_library:
+          config:
+            multiple: false
 
       - label: 'Draft Status'
         name: 'draft'

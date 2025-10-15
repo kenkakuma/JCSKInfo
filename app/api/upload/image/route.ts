@@ -43,13 +43,13 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // 验证文件大小 (最大 10MB)
-    const maxSize = 10 * 1024 * 1024 // 10MB in bytes
+    // 验证文件大小 (最大 20MB)
+    const maxSize = 20 * 1024 * 1024 // 20MB in bytes
     if (file.size > maxSize) {
       return NextResponse.json(
         {
           success: false,
-          error: 'File too large. Maximum size is 10MB.',
+          error: 'File too large. Maximum size is 20MB.',
         },
         { status: 400 }
       )
@@ -116,7 +116,7 @@ export async function POST(request: NextRequest) {
 export async function GET() {
   return NextResponse.json({
     cloudName: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
-    maxFileSize: 10 * 1024 * 1024, // 10MB
+    maxFileSize: 20 * 1024 * 1024, // 20MB
     allowedFormats: ['jpg', 'jpeg', 'png', 'gif', 'webp'],
   })
 }
