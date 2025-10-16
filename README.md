@@ -38,7 +38,7 @@
 **最简单的部署方式，3 分钟上线！**
 
 1. 访问 https://vercel.com 并用 GitHub 登录
-2. 导入项目 `kenkakuma/JCSKInfo`
+2. 导入项目
 3. 配置环境变量（参考下方）
 4. 点击 Deploy
 
