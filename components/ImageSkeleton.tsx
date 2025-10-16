@@ -72,7 +72,10 @@ export default function ImageSkeleton({
         alt={alt || ''}
         className={`${loading ? 'opacity-0' : 'opacity-100'} ${className}`}
         style={{
-          transition: 'opacity 300ms ease-in-out',
+          ...props.style, // 先合并传入的 style
+          transition: props.style?.transition
+            ? `opacity 300ms ease-in-out, ${props.style.transition}`
+            : 'opacity 300ms ease-in-out',
         }}
         onLoad={handleLoad}
         onError={handleError}

@@ -89,7 +89,10 @@ export default function MasonryNewsCard({
                   src={post.image}
                   alt={post.title}
                   fill
-                  className="object-cover transition-transform duration-700 ease-in-out group-hover:scale-110"
+                  className="object-cover group-hover:scale-110 group-hover:brightness-105"
+                  style={{
+                    transition: 'transform 800ms cubic-bezier(0.34, 1.56, 0.64, 1), filter 800ms cubic-bezier(0.34, 1.56, 0.64, 1)',
+                  }}
                 />
               ) : (
                 <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-blue-400 to-blue-600 transition-transform duration-700 ease-in-out group-hover:scale-110">
@@ -123,7 +126,10 @@ export default function MasonryNewsCard({
                       src={post.image}
                       alt={post.title}
                       fill
-                      className="object-cover transition-transform duration-700 ease-in-out group-hover:scale-110"
+                      className="object-cover group-hover:scale-110 group-hover:brightness-105"
+                      style={{
+                        transition: 'transform 800ms cubic-bezier(0.34, 1.56, 0.64, 1), filter 800ms cubic-bezier(0.34, 1.56, 0.64, 1)',
+                      }}
                     />
                   ) : (
                     <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-indigo-400 to-purple-600 transition-transform duration-700 ease-in-out group-hover:scale-110">
@@ -261,7 +267,10 @@ export default function MasonryNewsCard({
                       src={post.image}
                       alt={post.title}
                       fill
-                      className="object-cover transition-transform duration-700 ease-in-out group-hover:scale-110"
+                      className="object-cover group-hover:scale-110 group-hover:brightness-105"
+                      style={{
+                        transition: 'transform 800ms cubic-bezier(0.34, 1.56, 0.64, 1), filter 800ms cubic-bezier(0.34, 1.56, 0.64, 1)',
+                      }}
                     />
                   ) : (
                     <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-pink-400 to-rose-600 transition-transform duration-700 ease-in-out group-hover:scale-110">
@@ -294,7 +303,10 @@ export default function MasonryNewsCard({
                       src={post.image}
                       alt={post.title}
                       fill
-                      className="object-cover"
+                      className="object-cover group-hover:scale-110 group-hover:brightness-105"
+                      style={{
+                        transition: 'transform 800ms cubic-bezier(0.34, 1.56, 0.64, 1), filter 800ms cubic-bezier(0.34, 1.56, 0.64, 1)',
+                      }}
                     />
                   ) : (
                     <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-purple-400 to-indigo-600">
@@ -361,10 +373,18 @@ export default function MasonryNewsCard({
   return (
     <Link href={post.url} className={colSpan}>
       <article className="group h-full cursor-pointer">
-        <div className="h-full overflow-hidden rounded-xl bg-white transition-transform duration-300 hover:scale-105 dark:bg-gray-900">
+        <div className="h-full overflow-hidden rounded-xl bg-white dark:bg-gray-900">
           <div className="relative h-48">
             {post.image ? (
-              <ImageSkeleton src={post.image} alt={post.title} fill className="object-cover" />
+              <ImageSkeleton
+                src={post.image}
+                alt={post.title}
+                fill
+                className="object-cover group-hover:scale-110 group-hover:brightness-105"
+                style={{
+                  transition: 'transform 800ms cubic-bezier(0.34, 1.56, 0.64, 1), filter 800ms cubic-bezier(0.34, 1.56, 0.64, 1)',
+                }}
+              />
             ) : (
               <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-red-500 to-orange-500">
                 <div className="text-4xl font-bold text-white opacity-30">

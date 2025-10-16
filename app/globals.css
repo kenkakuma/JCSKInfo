@@ -31,7 +31,6 @@
   }
 
   /* 只为特定元素添加过渡，避免全局 * 选择器 */
-  article,
   section,
   nav,
   header,
@@ -46,16 +45,18 @@
       color 0.15s ease-in-out;
   }
 
+  /* article 元素只添加阴影过渡，不影响内部元素 */
+  article {
+    transition: box-shadow 0.3s ease-in-out;
+  }
+
   /* 排除某些不需要过渡的元素 */
   input,
   textarea,
   select,
-  img,
   video,
   iframe,
-  [data-no-transition],
-  *[class*='animate-'],
-  *[class*='transition-'] {
+  [data-no-transition] {
     transition: none !important;
   }
 }
@@ -136,4 +137,20 @@
 
 .prose [data-rehype-pretty-code-title] + pre {
   @apply mt-0 rounded-t-none;
+}
+
+/* PostCard 图片缩放动画 - 简化版本 */
+.image-zoom-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.image-zoom {
+  transition: transform 800ms cubic-bezier(0.34, 1.56, 0.64, 1),
+              filter 800ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.card-hover-effect:hover .image-zoom {
+  transform: scale(1.1);
+  filter: brightness(1.05);
 }

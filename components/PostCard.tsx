@@ -12,15 +12,15 @@ interface PostCardProps {
 
 export default function PostCard({ post, readMoreText, readingTimeText }: PostCardProps) {
   return (
-    <article className="group overflow-hidden rounded-lg border border-gray-200 bg-white transition-shadow hover:shadow-xl dark:border-gray-700 dark:bg-gray-800">
+    <article className="card-hover-effect overflow-hidden rounded-lg border border-gray-200 bg-white transition-shadow hover:shadow-xl dark:border-gray-700 dark:bg-gray-800">
       {post.image && (
         <Link href={post.url} className="block">
-          <div className="relative aspect-video overflow-hidden">
+          <div className="image-zoom-container relative aspect-video overflow-hidden">
             <Image
               src={post.image}
               alt={post.title}
               fill
-              className="object-cover transition-transform duration-300 group-hover:scale-105"
+              className="image-zoom object-cover"
             />
           </div>
         </Link>

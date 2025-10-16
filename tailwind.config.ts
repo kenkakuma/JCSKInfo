@@ -9,6 +9,14 @@ const config: Config = {
   darkMode: 'class',
   theme: {
     extend: {
+      transitionTimingFunction: {
+        'smooth': 'cubic-bezier(0.4, 0, 0.2, 1)',
+        'smooth-in-out': 'cubic-bezier(0.45, 0, 0.55, 1)',
+      },
+      transitionDuration: {
+        '600': '600ms',
+        '800': '800ms',
+      },
       fontFamily: {
         sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
         serif: ['var(--font-noto-serif)', 'serif'],
