@@ -18,6 +18,10 @@ export interface Dictionary {
     search: string
     darkMode: string
     lightMode: string
+    allTags: string
+    popularTags: string
+    taggedWith: string
+    postsWithTag: string
   }
   nav: {
     home: string
