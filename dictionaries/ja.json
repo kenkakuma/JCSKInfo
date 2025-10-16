@@ -12,7 +12,11 @@
     "noPosts": "記事がありません",
     "search": "検索",
     "darkMode": "ダークモード",
-    "lightMode": "ライトモード"
+    "lightMode": "ライトモード",
+    "allTags": "すべてのタグ",
+    "popularTags": "人気のタグ",
+    "taggedWith": "タグ:",
+    "postsWithTag": "件の記事"
   },
   "nav": {
     "home": "ホーム",

@@ -12,12 +12,22 @@ interface LanguageSwitcherProps {
 export default function LanguageSwitcher({ currentLang, translationUrl }: LanguageSwitcherProps) {
   const pathname = usePathname()
 
-  // 如果有翻译URL，使用它；否则，简单地切换语言前缀
+  // 检测是否在文章详情页
+  const isArticlePage = pathname.includes('/posts/')
+
+  // 获取目标语言的URL
   const getAlternateUrl = (targetLang: Language) => {
+    // 如果提供了翻译URL（来自文章页的translationKey），使用它
     if (translationUrl) {
       return translationUrl
     }
-    // 替换路径中的语言代码
+
+    // 如果在文章详情页且没有翻译URL，跳转到目标语言的首页
+    if (isArticlePage) {
+      return `/${targetLang}`
+    }
+
+    // 其他页面（首页、列表页等），简单替换语言代码
     return pathname.replace(`/${currentLang}`, `/${targetLang}`)
   }
 

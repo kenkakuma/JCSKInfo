@@ -12,7 +12,11 @@
     "noPosts": "No posts yet",
     "search": "Search",
     "darkMode": "Dark mode",
-    "lightMode": "Light mode"
+    "lightMode": "Light mode",
+    "allTags": "All Tags",
+    "popularTags": "Popular Tags",
+    "taggedWith": "Tagged with:",
+    "postsWithTag": "posts"
   },
   "nav": {
     "home": "Home",

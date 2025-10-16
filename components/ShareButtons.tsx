@@ -1,6 +1,6 @@
 'use client'
 
-import { Facebook, Twitter, Link as LinkIcon, Check } from 'lucide-react'
+import { Facebook, Link as LinkIcon, Check, Instagram, MessageCircle } from 'lucide-react'
 import { useState } from 'react'
 import { Language } from '@/config/site'
 
@@ -27,7 +27,10 @@ export default function ShareButtons({ url, title, lang }: ShareButtonsProps) {
 
   const shareLinks = {
     facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`,
-    twitter: `https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(title)}`,
+    x: `https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(title)}`,
+    line: `https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(shareUrl)}`,
+    wechat: `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(shareUrl)}`,
+    instagram: `https://www.instagram.com/`,
   }
 
   const shareText = lang === 'vi' ? 'Chia sẻ' : lang === 'ja' ? '共有' : 'Share'
@@ -36,7 +39,8 @@ export default function ShareButtons({ url, title, lang }: ShareButtonsProps) {
   return (
     <div className="flex items-center gap-3">
       <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{shareText}:</span>
-      <div className="flex gap-2">
+      <div className="flex flex-wrap gap-2">
+        {/* Facebook */}
         <a
           href={shareLinks.facebook}
           target="_blank"
@@ -46,15 +50,54 @@ export default function ShareButtons({ url, title, lang }: ShareButtonsProps) {
         >
           <Facebook className="h-5 w-5 transition-transform group-hover:scale-110" />
         </a>
+
+        {/* X (formerly Twitter) */}
         <a
-          href={shareLinks.twitter}
+          href={shareLinks.x}
           target="_blank"
           rel="noopener noreferrer"
-          className="group rounded-lg bg-sky-500 p-2 text-white transition-all hover:scale-110 hover:bg-sky-600 hover:shadow-lg"
-          aria-label="Share on Twitter"
+          className="group rounded-lg bg-black p-2 text-white transition-all hover:scale-110 hover:bg-gray-800 hover:shadow-lg"
+          aria-label="Share on X"
         >
-          <Twitter className="h-5 w-5 transition-transform group-hover:scale-110" />
+          <svg className="h-5 w-5 transition-transform group-hover:scale-110" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+          </svg>
         </a>
+
+        {/* Line */}
+        <a
+          href={shareLinks.line}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group rounded-lg bg-[#00B900] p-2 text-white transition-all hover:scale-110 hover:bg-[#00A000] hover:shadow-lg"
+          aria-label="Share on Line"
+        >
+          <MessageCircle className="h-5 w-5 transition-transform group-hover:scale-110" />
+        </a>
+
+        {/* WeChat - Opens QR code */}
+        <a
+          href={shareLinks.wechat}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group rounded-lg bg-[#09B83E] p-2 text-white transition-all hover:scale-110 hover:bg-[#08A036] hover:shadow-lg"
+          aria-label="Share on WeChat"
+        >
+          <MessageCircle className="h-5 w-5 transition-transform group-hover:scale-110" fill="currentColor" />
+        </a>
+
+        {/* Instagram */}
+        <a
+          href={shareLinks.instagram}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group rounded-lg bg-gradient-to-br from-purple-600 via-pink-600 to-orange-500 p-2 text-white transition-all hover:scale-110 hover:shadow-lg"
+          aria-label="Share on Instagram"
+        >
+          <Instagram className="h-5 w-5 transition-transform group-hover:scale-110" />
+        </a>
+
+        {/* Copy Link */}
         <button
           onClick={handleCopyLink}
           className={`group relative rounded-lg p-2 text-white transition-all hover:scale-110 hover:shadow-lg ${

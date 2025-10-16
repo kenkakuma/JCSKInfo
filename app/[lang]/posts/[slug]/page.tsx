@@ -1,21 +1,26 @@
 import { notFound } from 'next/navigation'
+import Link from 'next/link'
 import { allPosts } from 'contentlayer/generated'
 import { Language } from '@/config/site'
 import { getDictionary } from '@/lib/dictionary'
-import { formatDate, getRelatedPosts, getTranslatedPost } from '@/lib/utils'
+import { formatDate, getRelatedPosts, getTranslatedPost, normalizeTagForUrl } from '@/lib/utils'
 import Image from 'next/image'
 import { Calendar, Clock } from 'lucide-react'
 import ShareButtons from '@/components/ShareButtons'
 import RelatedPosts from '@/components/RelatedPosts'
-import LanguageSwitcher from '@/components/LanguageSwitcher'
 import MDXContent from '@/components/MDXContent'
 import ViewCounter from '@/components/ViewCounter'
-import { DisplayAd, InArticleAd } from '@/components/AdSense'
+import { InArticleAd } from '@/components/AdSense'
+import InlineAd from '@/components/InlineAd'
 import { Metadata } from 'next'
 import { ArticleJsonLd, BreadcrumbJsonLd } from '@/components/JsonLd'
 import Breadcrumb from '@/components/Breadcrumb'
 import ReadingProgress from '@/components/ReadingProgress'
 import BackToTop from '@/components/BackToTop'
+import WeatherWidget from '@/components/WeatherWidget'
+import StockWidget from '@/components/StockWidget'
+import CryptoWidget from '@/components/CryptoWidget'
+import TrendingPosts from '@/components/TrendingPosts'
 
 export async function generateStaticParams() {
   return allPosts.map((post) => ({
@@ -116,84 +121,91 @@ export default async function PostPage({ params }: { params: { lang: Language; s
         items={breadcrumbItems.map((item) => ({ name: item.name, url: `${siteUrl}${item.url}` }))}
       />
 
-      <article className="container mx-auto px-4 py-12">
+      <div className="container mx-auto px-4 py-12">
         {/* 面包屑导航 */}
         <Breadcrumb items={breadcrumbItems} lang={params.lang} homeLabel={dict.common.home} />
 
-        {/* 语言切换器 */}
-        <div className="mb-6 flex justify-end">
-          <LanguageSwitcher currentLang={params.lang} translationUrl={translatedPost?.url} />
-        </div>
+        {/* 主要内容区域 - 左侧文章 + 右侧边栏 */}
+        <div className="flex gap-6">
+          {/* 左侧文章内容 */}
+          <article className="flex-1">
+            {/* 文章头部 */}
+            <header className="mb-8">
+              <div className="mb-4 flex flex-wrap gap-2">
+                {post.tags?.map((tag) => (
+                  <Link
+                    key={tag}
+                    href={`/${params.lang}/tags/${normalizeTagForUrl(tag)}`}
+                    className="rounded-full bg-primary-100 px-3 py-1 text-sm font-medium text-primary-700 transition-colors hover:bg-primary-200 dark:bg-primary-900 dark:text-primary-300 dark:hover:bg-primary-800"
+                  >
+                    #{tag}
+                  </Link>
+                ))}
+              </div>
 
-        {/* 文章头部 */}
-        <header className="mb-8">
-          <div className="mb-4 flex flex-wrap gap-2">
-            {post.tags?.map((tag) => (
-              <span
-                key={tag}
-                className="rounded-full bg-primary-100 px-3 py-1 text-sm font-medium text-primary-700 dark:bg-primary-900 dark:text-primary-300"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
+              <h1 className="mb-6 font-serif text-4xl font-medium text-gray-900 dark:text-gray-100 md:text-5xl">
+                {post.title}
+              </h1>
 
-          <h1 className="mb-6 font-serif text-4xl font-medium text-gray-900 dark:text-gray-100 md:text-5xl">
-            {post.title}
-          </h1>
+              <div className="flex flex-wrap items-center gap-6 text-gray-600 dark:text-gray-400">
+                <div className="flex items-center gap-2">
+                  <Calendar className="h-5 w-5" />
+                  <time dateTime={post.date}>{formatDate(post.date, params.lang)}</time>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Clock className="h-5 w-5" />
+                  <span>
+                    {Math.ceil(post.readingTime.minutes)} {dict.common.readingTime}
+                  </span>
+                </div>
+                <ViewCounter postId={post._id} increment={true} />
+              </div>
+            </header>
 
-          <div className="flex flex-wrap items-center gap-6 text-gray-600 dark:text-gray-400">
-            <div className="flex items-center gap-2">
-              <Calendar className="h-5 w-5" />
-              <time dateTime={post.date}>{formatDate(post.date, params.lang)}</time>
+            {/* 文章内容 */}
+            <div className="prose prose-lg dark:prose-dark">
+              <MDXContent code={post.body.code} />
             </div>
-            <div className="flex items-center gap-2">
-              <Clock className="h-5 w-5" />
-              <span>
-                {Math.ceil(post.readingTime.minutes)} {dict.common.readingTime}
-              </span>
+
+            {/* 文章中部广告 - 会自动插入到第2段后 */}
+            <InlineAd afterParagraph={2} />
+
+            {/* 文章底部广告 */}
+            <div className="my-8">
+              <InArticleAd adSlot="1234567891" />
             </div>
-            <ViewCounter postId={post._id} increment={true} />
-          </div>
-        </header>
 
-        {/* 特色图片 */}
-        {post.image && (
-          <div className="relative mb-8 aspect-video overflow-hidden rounded-lg">
-            <Image src={post.image} alt={post.title} fill className="object-cover" priority />
-          </div>
-        )}
+            {/* 分享按钮 */}
+            <div className="mt-12 border-t border-gray-200 pt-8 dark:border-gray-700">
+              <ShareButtons url={post.url} title={post.title} lang={params.lang} />
+            </div>
 
-        {/* 顶部广告 - 响应式展示广告 */}
-        <div className="mx-auto mb-8 max-w-3xl">
-          <DisplayAd adSlot="1234567890" />
+            {/* 联盟声明 */}
+            <div className="mt-8 rounded-lg bg-gray-50 p-4 text-sm text-gray-600 dark:bg-gray-800 dark:text-gray-400">
+              ℹ️ {dict.post.affiliateDisclosure}
+            </div>
+
+            {/* 相关文章 */}
+            <div className="mt-12">
+              <RelatedPosts posts={relatedPosts} title={dict.common.relatedPosts} />
+            </div>
+          </article>
+
+          {/* 右侧边栏 - 与首页一致 */}
+          <aside className="hidden w-[340px] flex-shrink-0 space-y-4 lg:block">
+            <div className="sticky top-6 space-y-4">
+              {/* 天气组件 */}
+              <WeatherWidget lang={params.lang} />
+              {/* 股票信息组件 */}
+              <StockWidget lang={params.lang} />
+              {/* 加密货币组件 */}
+              <CryptoWidget lang={params.lang} />
+              {/* 人气新闻排行榜 */}
+              <TrendingPosts allPosts={allPosts.filter((p) => p.lang === params.lang)} limit={10} lang={params.lang} />
+            </div>
+          </aside>
         </div>
-
-        {/* 文章内容 */}
-        <div className="prose prose-lg mx-auto dark:prose-dark">
-          <MDXContent code={post.body.code} skipFirstImage={!!post.image} />
-        </div>
-
-        {/* 文章内广告 */}
-        <div className="mx-auto my-8 max-w-3xl">
-          <InArticleAd adSlot="1234567891" />
-        </div>
-
-        {/* 分享按钮 */}
-        <div className="mx-auto mt-12 max-w-3xl border-t border-gray-200 pt-8 dark:border-gray-700">
-          <ShareButtons url={post.url} title={post.title} lang={params.lang} />
-        </div>
-
-        {/* 联盟声明 */}
-        <div className="mx-auto mt-8 max-w-3xl rounded-lg bg-gray-50 p-4 text-sm text-gray-600 dark:bg-gray-800 dark:text-gray-400">
-          ℹ️ {dict.post.affiliateDisclosure}
-        </div>
-
-        {/* 相关文章 */}
-        <div className="mx-auto max-w-6xl">
-          <RelatedPosts posts={relatedPosts} title={dict.common.relatedPosts} />
-        </div>
-      </article>
+      </div>
 
       {/* 返回顶部按钮 */}
       <BackToTop />

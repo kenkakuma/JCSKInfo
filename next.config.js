@@ -8,6 +8,14 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
+        hostname: 'www.jcski.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'jcski.com',
+      },
+      {
+        protocol: 'https',
         hostname: 'images.unsplash.com',
       },
       {

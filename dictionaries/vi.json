@@ -12,7 +12,11 @@
     "noPosts": "Chưa có bài viết nào",
     "search": "Tìm kiếm",
     "darkMode": "Chế độ tối",
-    "lightMode": "Chế độ sáng"
+    "lightMode": "Chế độ sáng",
+    "allTags": "Tất cả thẻ",
+    "popularTags": "Thẻ phổ biến",
+    "taggedWith": "Thẻ:",
+    "postsWithTag": "bài viết"
   },
   "nav": {
     "home": "Trang chủ",

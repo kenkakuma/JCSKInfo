@@ -176,3 +176,94 @@ export function trackAffiliateClick(platform: string, productName: string) {
     })
   }
 }
+
+// ==================== Tag 相关工具函数 ====================
+
+// Tag 数据结构
+export interface TagWithCount {
+  tag: string
+  count: number
+  posts: Post[]
+}
+
+/**
+ * 获取所有标签（按文章数量排序）
+ * @param posts 文章列表
+ * @param lang 语言（可选，如果提供则只统计该语言的文章）
+ * @returns 标签列表（包含文章数量）
+ */
+export function getAllTags(posts: Post[], lang?: Language): TagWithCount[] {
+  const tagMap = new Map<string, Post[]>()
+
+  // 筛选文章
+  const filteredPosts = lang
+    ? posts.filter((post) => post.lang === lang && !post.draft)
+    : posts.filter((post) => !post.draft)
+
+  // 统计每个标签的文章
+  filteredPosts.forEach((post) => {
+    const tags = post.tags || []
+    tags.forEach((tag) => {
+      if (!tagMap.has(tag)) {
+        tagMap.set(tag, [])
+      }
+      tagMap.get(tag)!.push(post)
+    })
+  })
+
+  // 转换为数组并排序
+  return Array.from(tagMap.entries())
+    .map(([tag, posts]) => ({
+      tag,
+      count: posts.length,
+      posts: posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()),
+    }))
+    .sort((a, b) => b.count - a.count)
+}
+
+/**
+ * 根据标签获取文章
+ * @param posts 所有文章
+ * @param tag 标签名
+ * @param lang 语言
+ * @returns 包含该标签的文章列表（按日期倒序）
+ */
+export function getPostsByTag(posts: Post[], tag: string, lang: Language): Post[] {
+  return posts
+    .filter(
+      (post) =>
+        post.lang === lang &&
+        !post.draft &&
+        post.tags?.some((t) => t.toLowerCase() === tag.toLowerCase())
+    )
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+}
+
+/**
+ * 获取热门标签（Top N）
+ * @param posts 文章列表
+ * @param lang 语言
+ * @param limit 返回数量（默认 10）
+ * @returns 热门标签列表
+ */
+export function getPopularTags(posts: Post[], lang: Language, limit: number = 10): TagWithCount[] {
+  return getAllTags(posts, lang).slice(0, limit)
+}
+
+/**
+ * 规范化标签名称（用于 URL）
+ * @param tag 标签名
+ * @returns URL 安全的标签名
+ */
+export function normalizeTagForUrl(tag: string): string {
+  return encodeURIComponent(tag.trim())
+}
+
+/**
+ * 从 URL 解码标签名称
+ * @param tag URL 编码的标签名
+ * @returns 原始标签名
+ */
+export function decodeTagFromUrl(tag: string): string {
+  return decodeURIComponent(tag)
+}
