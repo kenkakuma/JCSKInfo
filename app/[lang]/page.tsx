@@ -1,6 +1,7 @@
 import { allPosts } from 'contentlayer/generated'
 import { Language } from '@/config/site'
 import MasonryNewsCard from '@/components/MasonryNewsCard'
+import HeroCarousel from '@/components/HeroCarousel'
 import WeatherWidget from '@/components/WeatherWidget'
 import StockWidget from '@/components/StockWidget'
 import CryptoWidget from '@/components/CryptoWidget'
@@ -13,8 +14,7 @@ export default async function HomePage({ params }: { params: { lang: Language } 
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 
   // 分配文章到不同的布局
-  const heroPost = posts[0] // 第一篇作为英雄文章
-  const displayPosts = posts.slice(1, 20) // 显示接下来的19篇文章（总共20篇包括英雄文章）
+  const displayPosts = posts.slice(3, 20) // 前3篇用于轮播，显示接下来的17篇文章
 
   return (
     <div className="min-h-screen bg-gray-50 text-gray-900 dark:bg-gray-950 dark:text-white">
@@ -22,12 +22,8 @@ export default async function HomePage({ params }: { params: { lang: Language } 
         <div className="flex gap-6">
           {/* 左侧主内容区 */}
           <div className="flex-1">
-            {/* 特色文章 - 英雄布局 */}
-            {heroPost && (
-              <div className="mb-6">
-                <MasonryNewsCard post={heroPost} variant="hero" />
-              </div>
-            )}
+            {/* 特色文章 - 轮播展示前3篇 */}
+            {posts.length > 0 && <HeroCarousel posts={posts} autoPlayInterval={8000} />}
 
             {/* 瀑布流网格 - 3小1大循环模式 */}
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
