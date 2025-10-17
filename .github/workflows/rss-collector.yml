@@ -89,11 +89,11 @@
           run: |
             echo "## 📊 RSS Collection Summary" >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
-            echo "- **Timestamp**: $(date -u +"%Y-%m-%d %H:%M UTC")" >>$GITHUB_STEP_SUMMARY
+            echo "- **Timestamp**: $(date -u +"%Y-%m-%d %H:%M UTC")" >> $GITHUB_STEP_SUMMARY
             echo "- **Status**: ${{ job.status }}" >> $GITHUB_STEP_SUMMARY
-            echo "- **New Content**: ${{steps.check_changes.outputs.has_changes == 'true' && '✅ Yes' || 'ℹ️ No'}}" >> $GITHUB_STEP_SUMMARY
+            echo "- **New Content**: ${{ steps.check_changes.outputs.has_changes == 'true' && '✅ Yes' || 'ℹ️ No'}}" >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
             echo "### Next Steps" >> $GITHUB_STEP_SUMMARY
-            echo "1. Go to Sveltia CMS: https://jcski.com/admin/posts" >>$GITHUB_STEP_SUMMARY
-            echo "2. Review drafts with \`draft: true\`" >>$GITHUB_STEP_SUMMARY
+            echo "1. Go to Sveltia CMS: https://jcski.com/admin/posts" >> $GITHUB_STEP_SUMMARY
+            echo "2. Review drafts with \`draft: true\`" >> $GITHUB_STEP_SUMMARY
             echo "3. Edit and publish when ready" >> $GITHUB_STEP_SUMMARY
