@@ -1,0 +1,106 @@
+Bash(cat .github/workflows/rss-collector.yml)
+  ⎿ name: RSS Content Collector
+
+    # Trigger conditions
+    on:
+      # Run every 6 hours
+      schedule:
+        - cron: '0 */6 * * *'  # At minute 0 past every 6th hour
+
+      # Allow manual trigger
+      workflow_dispatch:
+        inputs:
+          dry_run:
+            description: 'Dry run (no commit)'
+            required: false
+            default: 'false'
+
+    # Permissions
+    permissions:
+      contents: write
+
+    jobs:
+      collect:
+        name: Collect RSS Content
+        runs-on: ubuntu-latest
+
+        steps:
+          # Step 1: Checkout repository
+          - name: Checkout repository
+            uses: actions/checkout@v4
+            with:
+              fetch-depth: 0  # Full history for better context
+
+          # Step 2: Setup Node.js
+          - name: Setup Node.js
+            uses: actions/setup-node@v4
+            with:
+              node-version: '18'
+              cache: 'npm'
+              cache-dependency-path: scripts/rss-collector/package.json
+
+          # Step 3: Install dependencies
+          - name: Install dependencies
+            working-directory: scripts/rss-collector
+            run: npm install
+
+          # Step 4: Run RSS collector
+          - name: Run RSS collector
+            working-directory: scripts/rss-collector
+            run: npm run collect
+            continue-on-error: true  # Don't fail if no new content
+
+          # Step 5: Check for changes
+          - name: Check for new drafts
+            id: check_changes
+            run: |
+              if [[ -n $(git status -s content/posts/) ]]; then
+                echo "has_changes=true" >> $GITHUB_OUTPUT
+                echo "✅ New drafts detected"
+              else
+                echo "has_changes=false" >> $GITHUB_OUTPUT
+                echo "ℹ️  No new content collected"
+              fi
+
+          # Step 6: Commit and push (if changes detected)
+          - name: Commit new drafts
+            if: steps.check_changes.outputs.has_changes == 'true' &&
+    github.event.inputs.dry_run != 'true'
+            run: |
+              git config user.name "RSS Content Collector"
+              git config user.email "rss-bot@jcski.com"
+
+              # Add only content files
+              git add content/posts/**/*.mdx
+              git add scripts/rss-collector/.collected-hashes.json
+
+              # Create commit with timestamp
+              TIMESTAMP=$(date -u +"%Y-%m-%d %H:%M UTC")
+              git commit -m "feat: Add RSS collected drafts [${TIMESTAMP}]
+    [skip ci]"
+
+              # Push to main branch
+              git push origin main
+
+              echo "✅ Changes committed and pushed"
+
+          # Step 7: Summary
+          - name: Job summary
+            if: always()
+            run: |
+              echo "## 📊 RSS Collection Summary" >> $GITHUB_STEP_SUMMARY
+              echo "" >> $GITHUB_STEP_SUMMARY
+              echo "- **Timestamp**: $(date -u +"%Y-%m-%d %H:%M UTC")" >>
+    $GITHUB_STEP_SUMMARY
+              echo "- **Status**: ${{ job.status }}" >>
+    $GITHUB_STEP_SUMMARY
+              echo "- **New Content**: ${{
+    steps.check_changes.outputs.has_changes == 'true' && '✅ Yes' || 'ℹ️
+    No' }}" >> $GITHUB_STEP_SUMMARY
+              echo "" >> $GITHUB_STEP_SUMMARY
+              echo "### Next Steps" >> $GITHUB_STEP_SUMMARY
+              echo "1. Go to Sveltia CMS: https://jcski.com/admin/posts" >>
+     $GITHUB_STEP_SUMMARY
+              echo "2. Review drafts with \`draft: true\`" >>
+    $GITHUB_STEP_SUMMARY
+              echo "3. Edit and publish when ready" >> $GITHUB_STEP_SUMMARY
