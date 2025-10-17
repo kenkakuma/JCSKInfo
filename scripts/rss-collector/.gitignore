@@ -1,8 +1,8 @@
 # Dependencies
 node_modules/
 
-# Collected hashes (可选:如果想保留去重记录,可以注释掉这行)
-.collected-hashes.json
+# Collected hashes - MUST be committed for deduplication across workflow runs
+# .collected-hashes.json
 
 # Debug/test files
 test-debug.js
