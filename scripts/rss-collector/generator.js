@@ -55,8 +55,14 @@ export function generateMDX(article) {
  * @returns {string} Full file path
  */
 export function getArticleFilePath(article) {
-  // Get the project root (2 levels up from scripts/rss-collector)
-  const projectRoot = path.resolve(process.cwd());
+  // Get the project root - handle both local and GitHub Actions environments
+  const currentDir = process.cwd();
+
+  // If we're in scripts/rss-collector, go up 2 levels to project root
+  const projectRoot = currentDir.endsWith('rss-collector')
+    ? path.resolve(currentDir, '..', '..')
+    : path.resolve(currentDir);
+
   const contentDir = path.join(projectRoot, 'content', 'posts', article.lang);
   const fileName = `${article.translationKey}.mdx`;
 
