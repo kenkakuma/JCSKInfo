@@ -1,0 +1,17 @@
+{
+  "name": "jcski-rss-collector",
+  "version": "1.0.0",
+  "description": "RSS content collector for JetCode·SKI blog",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "collect": "node index.js",
+    "test": "node test.js"
+  },
+  "dependencies": {
+    "rss-parser": "^3.13.0",
+    "gray-matter": "^4.0.3",
+    "turndown": "^7.1.2",
+    "node-fetch": "^3.3.2"
+  }
+}

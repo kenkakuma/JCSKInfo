@@ -1,0 +1,15 @@
+# Dependencies
+node_modules/
+
+# Collected hashes (可选:如果想保留去重记录,可以注释掉这行)
+.collected-hashes.json
+
+# Debug/test files
+test-debug.js
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
