@@ -4,8 +4,164 @@
 
 所有值得注意的项目更改都将记录在此文件中。
 
-格式基于 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/)，  
+格式基于 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/)，
 版本号遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
+
+---
+
+## [0.3.1] - 2025-10-18
+
+### 🎯 版本概述
+
+**AI 新闻轮播与 SEO 优化** - 添加智能 AI 新闻轮播功能，完成全面 SEO 审计，为搜索引擎收录做准备。
+
+### ✨ 新增功能
+
+#### 🤖 AI 新闻轮播组件
+
+全新的 AI 新闻专属轮播模块，智能展示 AI 相关科技新闻。
+
+**核心功能**：
+- **智能过滤**：自动筛选包含 AI 标签的文章（不区分大小写）
+- **时效性控制**：仅显示 7 天内发布的 AI 新闻，确保内容新鲜度
+- **自动连播**：8 秒自动切换（可配置间隔时间）
+- **翻拍动画**：3D `rotateY` 翻转效果，平滑过渡
+- **AI 标识**：顶部渐变色 "⚡ AI News" 徽章
+
+**交互功能**：
+- 鼠标悬停显示左右箭头和播放/暂停按钮
+- 键盘导航：← → 切换文章，空格暂停/播放
+- 底部指示器显示当前位置和总数
+- 计数显示："X / Y AI Related News"
+
+**设计特点**：
+- 与 HeroCarousel 保持一致的设计风格
+- AI 标签使用蓝紫渐变突出显示
+- 完整的响应式设计和暗色模式支持
+- 图片左侧，文字右侧布局（占3列宽度）
+
+**实现文件**：
+- `components/AICarousel.tsx` - AI 轮播组件
+- `app/[lang]/page.tsx` - 集成到主页第一个大卡片位置
+
+**过滤逻辑**：
+```typescript
+// 同时满足两个条件：
+// 1. 标签包含 "ai" 或 "AI"
+// 2. 发布时间在过去 7 天以内
+const aiPosts = posts.filter((post) => {
+  const hasAITag = post.tags?.some((tag) => tag.toLowerCase().includes('ai'))
+  const postDate = new Date(post.date)
+  const oneWeekAgo = new Date()
+  oneWeekAgo.setDate(oneWeekAgo.getDate() - 7)
+  return hasAITag && postDate >= oneWeekAgo
+})
+```
+
+#### 📊 SEO 全面审计与优化文档
+
+创建完整的 SEO 优化文档套件，为 v0.4.0 广告集成做准备。
+
+**新增文档**：
+
+1. **`docs/SEO_AUDIT_REPORT.md`** (10,000+ 字)
+   - 当前 SEO 状态全面分析
+   - 为什么还没被搜索引擎收录的原因
+   - 完整优化建议和行动计划
+   - v0.4.0 广告集成详细规划
+   - 预计收录时间：2-7 天（完成所有建议后）
+
+2. **`docs/SEO_QUICK_START.md`**
+   - 今天立即执行的任务清单（逐步指导）
+   - Google Search Console 配置步骤
+   - Google Analytics 设置指南
+   - 故障排查指南
+
+3. **`docs/SEO_CODE_CHANGES.md`**
+   - 所有需要修改的代码（复制即用）
+   - hreflang 标签完整实现
+   - 隐私政策页面模板
+   - 环境变量配置示例
+   - 部署验证步骤
+
+4. **`docs/ROADMAP_v0.4.0.md`**
+   - 6 周详细规划（5 个阶段）
+   - AdSense 申请与集成完整流程
+   - 联盟营销系统开发计划
+   - 成功指标（KPIs）和时间线
+   - 预计发布时间：4-6 周后
+
+**关键 SEO 发现**：
+
+**✅ 已实现的优势**：
+- robots.txt 和 sitemap.xml 配置正确
+- 完整的 meta 标签（OpenGraph, Twitter Cards）
+- JSON-LD 结构化数据（Article, Breadcrumb, Website, Organization）
+- Google Analytics 基础设施就绪
+- Google AdSense 基础设施就绪
+
+**❌ 关键缺失项**（导致未收录的主要原因）：
+- Google Search Console 未验证
+- 未主动提交 sitemap
+- 缺少 hreflang 标签
+- Google Analytics 未配置
+- 缺少隐私政策页面（AdSense 必需）
+
+**立即行动计划**：
+1. Google Search Console 验证（30分钟）
+2. 配置 Google Analytics（20分钟）
+3. 请求索引重要页面（15分钟）
+
+### 🔧 技术改进
+
+#### 组件优化
+
+**AICarousel 性能优化**：
+- 使用 `useCallback` 避免不必要的重渲染
+- 过滤逻辑在组件内部完成，不影响其他组件
+- 翻拍动画性能优化（500ms 过渡）
+
+**代码质量**：
+- 无构建错误或警告
+- 完整的 TypeScript 类型支持
+- 符合 React Hooks 最佳实践
+
+### 📚 文档更新
+
+**新增文档（4 份）**：
+- `docs/SEO_AUDIT_REPORT.md` - SEO 审计报告
+- `docs/SEO_QUICK_START.md` - 快速启动指南
+- `docs/SEO_CODE_CHANGES.md` - 代码修改清单
+- `docs/ROADMAP_v0.4.0.md` - v0.4.0 路线图
+
+### 🎯 版本亮点
+
+✅ **AI 内容聚焦**：专属 AI 新闻轮播，突出技术前沿内容
+✅ **内容新鲜度**：7 天时效性控制，确保展示最新资讯
+✅ **交互体验**：翻拍动画 + 键盘快捷键 + 自动播放
+✅ **SEO 准备**：完整的 SEO 优化文档和路线图
+✅ **广告准备**：为 v0.4.0 AdSense 集成奠定基础
+
+### 🔮 下一步计划（v0.4.0）
+
+**SEO 优化**（Week 1-2）：
+- [ ] Google Search Console 验证与配置
+- [ ] 实现 hreflang 标签
+- [ ] 创建隐私政策页面
+- [ ] 配置 Google Analytics
+
+**内容建设**（Week 2-4）：
+- [ ] 发布 20-30 篇高质量文章
+- [ ] 优化现有内容 SEO
+- [ ] 建立外部链接
+
+**AdSense 集成**（Week 4-6）：
+- [ ] 申请 Google AdSense
+- [ ] 配置广告单元
+- [ ] 优化广告位置
+- [ ] 实现联盟营销系统
+
+**预计发布时间**：4-6 周后（确保搜索引擎充分收录）
 
 ---
 
