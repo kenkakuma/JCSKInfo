@@ -21,10 +21,19 @@ export default function AICarousel({ posts, autoPlayInterval = 8000 }: AICarouse
   const [isFlipping, setIsFlipping] = useState(false)
   const [displayIndex, setDisplayIndex] = useState(0)
 
-  // 过滤出包含 AI 标签的文章（不区分大小写）
-  const aiPosts = posts.filter((post) =>
-    post.tags?.some((tag) => tag.toLowerCase().includes('ai'))
-  )
+  // 过滤出一周以内发布的、包含 AI 标签的文章（不区分大小写）
+  const aiPosts = posts.filter((post) => {
+    // 检查是否有 AI 标签
+    const hasAITag = post.tags?.some((tag) => tag.toLowerCase().includes('ai'))
+    if (!hasAITag) return false
+
+    // 检查是否在一周以内发布
+    const postDate = new Date(post.date)
+    const oneWeekAgo = new Date()
+    oneWeekAgo.setDate(oneWeekAgo.getDate() - 7)
+
+    return postDate >= oneWeekAgo
+  })
 
   const goToSlide = useCallback(
     (index: number) => {
