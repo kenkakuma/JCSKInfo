@@ -106,12 +106,12 @@ export default function HeroCarousel({ posts, autoPlayInterval = 5000 }: HeroCar
                     {currentPost.title}
                   </h2>
 
-                  {/* 元信息 - 淡入 */}
+                  {/* 元信息 - 淡入，与标题同时显示 */}
                   <div
                     className={`mb-4 flex items-center gap-3 text-sm text-gray-500 transition-all duration-500 dark:text-gray-400 ${
                       isTransitioning ? 'opacity-0' : 'opacity-100'
                     }`}
-                    style={{ transitionDelay: isTransitioning ? '0ms' : '300ms' }}
+                    style={{ transitionDelay: isTransitioning ? '0ms' : '150ms' }}
                   >
                     <div className="flex items-center gap-1">
                       <Clock className="h-4 w-4" />
