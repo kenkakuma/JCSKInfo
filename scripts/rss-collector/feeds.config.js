@@ -6,43 +6,11 @@
  */
 
 export const RSS_FEEDS = {
-  // 日语科技新闻源
-  ja: [
-    {
-      url: 'https://japan.cnet.com/rss/news/',
-      name: 'CNET Japan',
-      category: 'tech-news',
-      priority: 'high'
-    },
-    {
-      url: 'https://www.gizmodo.jp/index.xml',
-      name: 'Gizmodo Japan',
-      category: 'tech-gadgets',
-      priority: 'medium'
-    }
-  ],
-
-  // 越南语科技新闻源
-  vi: [
-    {
-      url: 'https://genk.vn/rss/trang-chu.rss',
-      name: 'Genk.vn',
-      category: 'tech-news',
-      priority: 'high'
-    }
-  ],
-
-  // 英语科技新闻源
+  // 英语科技新闻源 - Engadget only
   en: [
     {
-      url: 'https://techcrunch.com/feed/',
-      name: 'TechCrunch',
-      category: 'tech-news',
-      priority: 'high'
-    },
-    {
-      url: 'https://www.theverge.com/rss/index.xml',
-      name: 'The Verge',
+      url: 'https://www.engadget.com/rss.xml',
+      name: 'Engadget',
       category: 'tech-news',
       priority: 'high'
     }
