@@ -13,6 +13,8 @@ import {
   extractTags,
   formatDate
 } from './utils.js';
+import { downloadImage } from './image-downloader.js';
+import { uploadToCloudinary } from './cloudinary-uploader.js';
 
 const parser = new Parser({
   customFields: {
@@ -82,16 +84,71 @@ function extractImage(item) {
 }
 
 /**
- * Transform RSS item to article object
+ * Process image: download and upload to Cloudinary
+ * @param {string} imageUrl - Original image URL
+ * @param {string} articleSlug - Article slug for naming
+ * @returns {Promise<string|null>} Cloudinary URL or null
+ */
+async function processImage(imageUrl, articleSlug) {
+  if (!imageUrl) {
+    console.log('  ⚠ No image found');
+    return null;
+  }
+
+  try {
+    console.log(`  📸 Processing image...`);
+
+    // Step 1: Download image
+    const downloadResult = await downloadImage(imageUrl);
+
+    if (!downloadResult.success) {
+      console.log(`  ✗ Download failed: ${downloadResult.error}`);
+      return null;
+    }
+
+    // Step 2: Upload to Cloudinary
+    const uploadResult = await uploadToCloudinary(downloadResult.filePath, {
+      public_id: `${articleSlug}-featured`
+    });
+
+    if (!uploadResult.success) {
+      console.log(`  ✗ Upload failed: ${uploadResult.error}`);
+      return null;
+    }
+
+    console.log(`  ✓ Image uploaded to Cloudinary`);
+    return uploadResult.url;
+
+  } catch (error) {
+    console.error(`  ✗ Image processing error: ${error.message}`);
+    return null;
+  }
+}
+
+/**
+ * Transform RSS item to article object with image processing
  * @param {Object} item - RSS item
  * @param {string} lang - Language code
  * @param {string} sourceName - Source feed name
- * @returns {Object} Article object
+ * @param {boolean} processImages - Whether to download and upload images to Cloudinary
+ * @returns {Promise<Object>} Article object
  */
-export function transformToArticle(item, lang, sourceName) {
+export async function transformToArticle(item, lang, sourceName, processImages = true) {
   const content = extractContent(item);
   const title = item.title?.trim() || 'Untitled';
   const translationKey = generateSlug(title);
+
+  // Extract original image URL
+  const originalImageUrl = extractImage(item);
+
+  // Process image if enabled
+  let imageUrl = originalImageUrl;
+  if (processImages && originalImageUrl) {
+    const cloudinaryUrl = await processImage(originalImageUrl, translationKey);
+    if (cloudinaryUrl) {
+      imageUrl = cloudinaryUrl;
+    }
+  }
 
   const article = {
     // Required fields
@@ -106,7 +163,7 @@ export function transformToArticle(item, lang, sourceName) {
 
     // Optional fields
     tags: extractTags(item),
-    image: extractImage(item),
+    image: imageUrl,
 
     // Metadata
     sourceUrl: item.link || '',
@@ -128,20 +185,21 @@ export function transformToArticle(item, lang, sourceName) {
  * @param {Array} feeds - Array of feed configs
  * @param {string} lang - Language code
  * @param {number} maxPerFeed - Maximum articles per feed
+ * @param {boolean} processImages - Whether to download and upload images
  * @returns {Promise<Array>} Array of articles
  */
-export async function parseFeeds(feeds, lang, maxPerFeed = 3) {
+export async function parseFeeds(feeds, lang, maxPerFeed = 3, processImages = true) {
   const allArticles = [];
 
   for (const feedConfig of feeds) {
     const items = await parseFeed(feedConfig.url, feedConfig.name);
 
     // Transform items to articles (limit per feed)
-    const articles = items
-      .slice(0, maxPerFeed)
-      .map(item => transformToArticle(item, lang, feedConfig.name));
-
-    allArticles.push(...articles);
+    // Process sequentially to avoid overwhelming Cloudinary API
+    for (const item of items.slice(0, maxPerFeed)) {
+      const article = await transformToArticle(item, lang, feedConfig.name, processImages);
+      allArticles.push(article);
+    }
   }
 
   console.log(`📝 Parsed ${allArticles.length} articles for language: ${lang}`);

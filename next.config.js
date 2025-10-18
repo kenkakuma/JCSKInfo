@@ -98,6 +98,15 @@ const nextConfig = {
         protocol: 'https',
         hostname: '**.engadget.com',
       },
+      // Yahoo/Verizon Media (Engadget图片CDN)
+      {
+        protocol: 'https',
+        hostname: 's.yimg.com',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.yimg.com',
+      },
       {
         protocol: 'https',
         hostname: '**.wired.com',

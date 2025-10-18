@@ -13,6 +13,7 @@ import { parseFeeds } from './parser.js';
 import { saveArticles } from './generator.js';
 import { loadCollectedHashes, saveCollectedHashes } from './utils.js';
 import { RSS_FEEDS, COLLECTOR_CONFIG } from './feeds.config.js';
+import { cleanupTempImages } from './image-downloader.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -59,11 +60,12 @@ async function collectLanguage(lang, collectedHashes) {
     return { saved: 0, skipped: 0, failed: 0 };
   }
 
-  // Parse RSS feeds
+  // Parse RSS feeds (with image processing enabled)
   const articles = await parseFeeds(
     feeds,
     lang,
-    COLLECTOR_CONFIG.maxArticlesPerFeed
+    COLLECTOR_CONFIG.maxArticlesPerFeed,
+    true // Enable automatic image download & Cloudinary upload
   );
 
   if (articles.length === 0) {
@@ -144,6 +146,10 @@ async function main() {
 
     console.log(`\n✨ Finished at: ${new Date().toLocaleString()}`);
 
+    // Cleanup temporary images
+    console.log('\n🧹 Cleaning up temporary files...');
+    await cleanupTempImages();
+
     // Exit code based on results
     if (allResults.saved > 0) {
       console.log('\n🎉 New content collected successfully!');
@@ -158,6 +164,15 @@ async function main() {
   } catch (error) {
     console.error('\n💥 Fatal error:', error.message);
     console.error(error.stack);
+
+    // Cleanup temporary images even on error
+    console.log('\n🧹 Cleaning up temporary files...');
+    try {
+      await cleanupTempImages();
+    } catch (cleanupError) {
+      console.error('Cleanup error:', cleanupError.message);
+    }
+
     process.exit(1);
   }
 }

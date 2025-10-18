@@ -17,8 +17,8 @@ public_folder: /images/posts
 media_library:
   name: cloudinary
   config:
-    cloud_name: dt@hpzm21
-    api_key: 295771887569851
+    cloud_name: dt0hpzm2l
+    api_key: 295771887569985
 
 # 本地开发模式支持
 local_backend: true
