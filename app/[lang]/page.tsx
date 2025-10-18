@@ -2,6 +2,7 @@ import { allPosts } from 'contentlayer/generated'
 import { Language } from '@/config/site'
 import MasonryNewsCard from '@/components/MasonryNewsCard'
 import HeroCarousel from '@/components/HeroCarousel'
+import AICarousel from '@/components/AICarousel'
 import WeatherWidget from '@/components/WeatherWidget'
 import StockWidget from '@/components/StockWidget'
 import CryptoWidget from '@/components/CryptoWidget'
@@ -25,7 +26,7 @@ export default async function HomePage({ params }: { params: { lang: Language } 
             {/* 特色文章 - 轮播展示前3篇 */}
             {posts.length > 0 && <HeroCarousel posts={posts} autoPlayInterval={8000} />}
 
-            {/* 瀑布流网格 - 3小1大循环模式 */}
+            {/* 瀑布流网格 - 3小1大循环模式，第一个大卡片位置显示 AI 新闻轮播 */}
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
               {displayPosts.map((post, index) => {
                 // 3小1大循环模式：0,1,2=小卡片，3=大卡片（占3列）
@@ -37,6 +38,10 @@ export default async function HomePage({ params }: { params: { lang: Language } 
 
                 if (cyclePosition === 3) {
                   // 第4个位置：大卡片（图片左，文字右）
+                  // 第一个大卡片位置替换为 AI 新闻轮播
+                  if (index === 3) {
+                    return <AICarousel key="ai-carousel" posts={posts} autoPlayInterval={8000} />
+                  }
                   variant = 'large'
                   colSpan = 'lg:col-span-3'
                 } else if (cyclePosition === 7) {
