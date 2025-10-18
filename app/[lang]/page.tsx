@@ -15,7 +15,7 @@ export default async function HomePage({ params }: { params: { lang: Language } 
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 
   // 分配文章到不同的布局
-  const displayPosts = posts.slice(3, 20) // 前3篇用于轮播，显示接下来的17篇文章
+  const displayPosts = posts.slice(3, 22) // 前3篇用于轮播，显示接下来的19篇文章
 
   return (
     <div className="min-h-screen bg-gray-50 text-gray-900 dark:bg-gray-950 dark:text-white">
@@ -40,7 +40,7 @@ export default async function HomePage({ params }: { params: { lang: Language } 
                   // 第4个位置：大卡片（图片左，文字右）
                   // 第一个大卡片位置替换为 AI 新闻轮播
                   if (index === 3) {
-                    return <AICarousel key="ai-carousel" posts={posts} autoPlayInterval={8000} />
+                    return <AICarousel key="ai-carousel" posts={posts} autoPlayInterval={6000} />
                   }
                   variant = 'large'
                   colSpan = 'lg:col-span-3'

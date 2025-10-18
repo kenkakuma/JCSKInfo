@@ -15,14 +15,20 @@ interface AICarouselProps {
   autoPlayInterval?: number
 }
 
-export default function AICarousel({ posts, autoPlayInterval = 8000 }: AICarouselProps) {
+export default function AICarousel({ posts, autoPlayInterval = 6000 }: AICarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isAutoPlaying, setIsAutoPlaying] = useState(true)
-  const [isFlipping, setIsFlipping] = useState(false)
+  const [isTransitioning, setIsTransitioning] = useState(false)
   const [displayIndex, setDisplayIndex] = useState(0)
 
-  // 过滤出一周以内发布的、包含 AI 标签的文章（不区分大小写）
+  // 排除Hero中显示的前3篇文章
+  const heroPostIds = posts.slice(0, 3).map((post) => post._id)
+
+  // 过滤出一周以内发布的、包含 AI 标签的文章（不区分大小写），并排除Hero中的文章
   const aiPosts = posts.filter((post) => {
+    // 排除Hero中的文章
+    if (heroPostIds.includes(post._id)) return false
+
     // 检查是否有 AI 标签
     const hasAITag = post.tags?.some((tag) => tag.toLowerCase().includes('ai'))
     if (!hasAITag) return false
@@ -37,17 +43,17 @@ export default function AICarousel({ posts, autoPlayInterval = 8000 }: AICarouse
 
   const goToSlide = useCallback(
     (index: number) => {
-      if (isFlipping || aiPosts.length === 0) return
-      setIsFlipping(true)
+      if (isTransitioning || aiPosts.length === 0) return
+      setIsTransitioning(true)
       setCurrentIndex(index)
 
-      // 翻拍动画：500ms 翻转，然后更新内容，再翻转回来
+      // 淡出旧内容，500ms后更新显示内容，再淡入
       setTimeout(() => {
         setDisplayIndex(index)
-        setTimeout(() => setIsFlipping(false), 50)
+        setTimeout(() => setIsTransitioning(false), 50)
       }, 500)
     },
-    [isFlipping, aiPosts.length]
+    [isTransitioning, aiPosts.length]
   )
 
   const goToPrevious = useCallback(() => {
@@ -116,21 +122,22 @@ export default function AICarousel({ posts, autoPlayInterval = 8000 }: AICarouse
         AI News
       </div>
 
-      {/* 轮播内容 - 使用翻拍动画 */}
-      <div
-        className="relative overflow-hidden rounded-xl transition-all duration-500"
-        style={{
-          transformStyle: 'preserve-3d',
-          transform: isFlipping ? 'rotateY(90deg)' : 'rotateY(0deg)',
-        }}
-      >
+      {/* 轮播内容 - 使用从下向上滑入动画 */}
+      <div className="relative overflow-hidden rounded-xl">
         <Link href={currentPost.url}>
           <article className="h-full cursor-pointer">
             <div className="h-full overflow-hidden rounded-xl bg-transparent transition-colors duration-300">
               <div className="grid h-64 md:grid-cols-3">
-                {/* 左侧图片 - 固定高度 h-48 */}
+                {/* 左侧图片 - 从下向上滑入 */}
                 <div className="relative flex h-64 items-center justify-center p-3">
-                  <div className="relative h-48 w-full overflow-hidden rounded-xl">
+                  <div
+                    className={`relative h-48 w-full overflow-hidden rounded-xl transition-all duration-500 ${
+                      isTransitioning
+                        ? 'opacity-0 translate-y-8'
+                        : 'opacity-100 translate-y-0'
+                    }`}
+                    style={{ transitionDelay: isTransitioning ? '0ms' : '200ms' }}
+                  >
                     {currentPost.image ? (
                       <ImageSkeleton
                         src={currentPost.image}
@@ -151,13 +158,27 @@ export default function AICarousel({ posts, autoPlayInterval = 8000 }: AICarouse
                 {/* 右侧内容 - 占2/3 */}
                 <div className="flex flex-col justify-between p-4 md:col-span-2">
                   <div>
+                    {/* 标题 - 从下向上滑入 */}
                     <h3
-                      className={`mb-3 line-clamp-2 ${titleFont} text-2xl font-normal text-gray-900 transition-colors duration-300 hover:text-blue-600 dark:text-white dark:hover:text-blue-400 md:text-[28px] md:leading-tight`}
+                      className={`mb-3 line-clamp-2 ${titleFont} text-2xl font-normal text-gray-900 transition-all duration-500 hover:text-blue-600 dark:text-white dark:hover:text-blue-400 md:text-[28px] md:leading-tight ${
+                        isTransitioning
+                          ? 'opacity-0 translate-y-8'
+                          : 'opacity-100 translate-y-0'
+                      }`}
+                      style={{ transitionDelay: isTransitioning ? '0ms' : '150ms' }}
                     >
                       {currentPost.title}
                     </h3>
 
-                    <div className="mb-2 flex items-center gap-3 text-xs text-gray-500 dark:text-gray-400">
+                    {/* 元信息 - 从下向上滑入 */}
+                    <div
+                      className={`mb-2 flex items-center gap-3 text-xs text-gray-500 transition-all duration-500 dark:text-gray-400 ${
+                        isTransitioning
+                          ? 'opacity-0 translate-y-8'
+                          : 'opacity-100 translate-y-0'
+                      }`}
+                      style={{ transitionDelay: isTransitioning ? '0ms' : '300ms' }}
+                    >
                       <div className="flex items-center gap-1">
                         <Clock className="h-3 w-3" />
                         <span>{currentPost.readingTime.text}</span>
@@ -168,13 +189,28 @@ export default function AICarousel({ posts, autoPlayInterval = 8000 }: AICarouse
                       <span>发布于{getTimeAgo(currentPost.date, currentPost.lang)}</span>
                     </div>
 
-                    <p className="line-clamp-3 text-sm text-gray-600 dark:text-gray-300">
+                    {/* 摘要 - 从下向上滑入 */}
+                    <p
+                      className={`line-clamp-3 text-sm text-gray-600 transition-all duration-500 dark:text-gray-300 ${
+                        isTransitioning
+                          ? 'opacity-0 translate-y-8'
+                          : 'opacity-100 translate-y-0'
+                      }`}
+                      style={{ transitionDelay: isTransitioning ? '0ms' : '450ms' }}
+                    >
                       {currentPost.summary}
                     </p>
                   </div>
 
-                  {/* 底部交互栏 */}
-                  <div className="mt-3 flex items-center justify-between border-t border-gray-200 pt-3 dark:border-gray-800">
+                  {/* 底部交互栏 - 从下向上滑入 */}
+                  <div
+                    className={`mt-3 flex items-center justify-between border-t border-gray-200 pt-3 transition-all duration-500 dark:border-gray-800 ${
+                      isTransitioning
+                        ? 'opacity-0 translate-y-8'
+                        : 'opacity-100 translate-y-0'
+                    }`}
+                    style={{ transitionDelay: isTransitioning ? '0ms' : '600ms' }}
+                  >
                     <div className="flex items-center gap-3">
                       <LikeButton
                         postId={currentPost.translationKey || currentPost._id}
@@ -248,25 +284,6 @@ export default function AICarousel({ posts, autoPlayInterval = 8000 }: AICarouse
                 <Play className="h-4 w-4" />
               )}
             </button>
-
-            {/* 底部指示器 */}
-            <div className="absolute bottom-4 left-1/2 z-10 flex -translate-x-1/2 gap-2">
-              {aiPosts.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={(e) => {
-                    e.preventDefault()
-                    goToSlide(index)
-                  }}
-                  className={`h-1.5 rounded-full transition-all duration-300 ${
-                    index === currentIndex
-                      ? 'w-8 bg-gradient-to-r from-blue-500 to-purple-600'
-                      : 'w-1.5 bg-white/70 hover:bg-white dark:bg-gray-600/70 dark:hover:bg-gray-500'
-                  }`}
-                  aria-label={`Go to AI news ${index + 1}`}
-                />
-              ))}
-            </div>
           </>
         )}
       </div>
