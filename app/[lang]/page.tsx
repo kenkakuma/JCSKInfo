@@ -1,5 +1,6 @@
 import { allPosts } from 'contentlayer/generated'
 import { Language } from '@/config/site'
+import { getPostsByLang } from '@/lib/utils'
 import MasonryNewsCard from '@/components/MasonryNewsCard'
 import HeroCarousel from '@/components/HeroCarousel'
 import AICarousel from '@/components/AICarousel'
@@ -9,10 +10,8 @@ import CryptoWidget from '@/components/CryptoWidget'
 import TrendingPosts from '@/components/TrendingPosts'
 
 export default async function HomePage({ params }: { params: { lang: Language } }) {
-  // 获取当前语言的文章并按日期排序
-  const posts = allPosts
-    .filter((post) => post.lang === params.lang)
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+  // 获取当前语言的文章并按日期排序（过滤草稿）
+  const posts = getPostsByLang(allPosts, params.lang)
 
   // 分配文章到不同的布局
   const displayPosts = posts.slice(3, 22) // 前3篇用于轮播，显示接下来的19篇文章
