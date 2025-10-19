@@ -90,7 +90,7 @@ export default function HeroCarousel({ posts, autoPlayInterval = 5000 }: HeroCar
       <div className="relative overflow-hidden rounded-2xl">
         <Link href={currentPost.url}>
           <article className="cursor-pointer transition-colors duration-300">
-            <div className="grid gap-6 p-6 md:h-[380px] md:grid-cols-2">
+            <div className="grid gap-6 p-6 md:h-[420px] md:grid-cols-2">
               {/* 左侧文字内容 */}
               <div className="flex flex-col justify-between overflow-hidden">
                 <div>
