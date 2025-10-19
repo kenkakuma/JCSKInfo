@@ -94,9 +94,9 @@ export default function HeroCarousel({ posts, autoPlayInterval = 5000 }: HeroCar
               {/* 左侧文字内容 */}
               <div className="flex flex-col justify-between">
                 <div>
-                  {/* 标题 - 从上向下进入 */}
+                  {/* 标题 - 从上向下进入，最多显示3行 */}
                   <h2
-                    className={`mb-4 ${titleFont} text-2xl font-normal text-gray-900 transition-all duration-500 hover:text-blue-600 dark:text-white dark:hover:text-blue-400 md:text-[40px] md:leading-tight ${
+                    className={`mb-4 line-clamp-3 ${titleFont} text-2xl font-normal text-gray-900 transition-all duration-500 hover:text-blue-600 dark:text-white dark:hover:text-blue-400 md:text-[40px] md:leading-tight ${
                       isTransitioning
                         ? 'opacity-0 -translate-y-8'
                         : 'opacity-100 translate-y-0'
