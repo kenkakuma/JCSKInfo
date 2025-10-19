@@ -106,7 +106,20 @@
 }
 
 .prose img {
-  @apply rounded-lg;
+  @apply rounded-lg shadow-lg mx-auto;
+  max-width: 80%;
+}
+
+/* 第一张图片：左浮动 + 文字环绕 (仅桌面端) */
+@media (min-width: 768px) {
+  .prose img:first-of-type {
+    float: left;
+    width: 60%;
+    max-width: 60%;
+    margin-right: 1.5rem;
+    margin-bottom: 1rem;
+    margin-left: 0;
+  }
 }
 
 .prose blockquote {

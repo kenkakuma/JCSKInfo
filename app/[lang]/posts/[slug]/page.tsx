@@ -167,7 +167,7 @@ export default async function PostPage({ params }: { params: { lang: Language; s
               <MDXContent code={post.body.code} />
             </div>
 
-            {/* 文章中部广告 - 会自动插入到第2段后 */}
+            {/* 文章中部广告 - 会自动插入到第3段后 */}
             <InlineAd afterParagraph={2} />
 
             {/* 文章底部广告 */}
