@@ -33,12 +33,12 @@ export default function AICarousel({ posts, autoPlayInterval = 6000 }: AICarouse
     const hasAITag = post.tags?.some((tag) => tag.toLowerCase().includes('ai'))
     if (!hasAITag) return false
 
-    // 检查是否在一周以内发布
+    // 检查是否在一个月以内发布（显示最近 30 天的 AI 相关文章）
     const postDate = new Date(post.date)
-    const oneWeekAgo = new Date()
-    oneWeekAgo.setDate(oneWeekAgo.getDate() - 7)
+    const thirtyDaysAgo = new Date()
+    thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30)
 
-    return postDate >= oneWeekAgo
+    return postDate >= thirtyDaysAgo
   })
 
   const goToSlide = useCallback(
