@@ -170,14 +170,14 @@ export default function AICarousel({ posts, autoPlayInterval = 6000 }: AICarouse
                       {currentPost.title}
                     </h3>
 
-                    {/* 元信息 - 从下向上滑入，与标题同时显示 */}
+                    {/* 元信息 - 从下向上滑入，在标题之后出现 */}
                     <div
                       className={`mb-2 flex items-center gap-3 text-xs text-gray-500 transition-all duration-500 dark:text-gray-400 ${
                         isTransitioning
                           ? 'opacity-0 translate-y-8'
                           : 'opacity-100 translate-y-0'
                       }`}
-                      style={{ transitionDelay: isTransitioning ? '0ms' : '150ms' }}
+                      style={{ transitionDelay: isTransitioning ? '0ms' : '250ms' }}
                     >
                       <div className="flex items-center gap-1">
                         <Clock className="h-3 w-3" />
