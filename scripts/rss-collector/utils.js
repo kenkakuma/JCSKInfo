@@ -119,7 +119,62 @@ export function htmlToMarkdown(html) {
 }
 
 /**
- * Extract and clean tags from RSS item
+ * Detect content-based tags from title and summary
+ * @param {string} title - Article title
+ * @param {string} content - Article content (title + summary)
+ * @returns {string[]} Array of detected tags
+ */
+function detectContentTags(title, content) {
+  const textToAnalyze = (title + ' ' + content).toLowerCase();
+  const detectedTags = [];
+
+  // AI/ML related keywords
+  const aiKeywords = {
+    'AI': [
+      'artificial intelligence', 'ai ', 'machine learning', 'deep learning',
+      'neural network', 'gpt', 'chatgpt', 'llm', 'generative', 'transformer',
+      'bert', 'llama', 'claude', 'gemini', 'copilot', 'mistral',
+      'intelligent', 'learning model'
+    ],
+    'Blockchain': [
+      'blockchain', 'crypto', 'bitcoin', 'ethereum', 'web3', 'defi',
+      'nft', 'smart contract', 'solidity', 'dapp', 'cryptocurrency'
+    ],
+    'Web Development': [
+      'react', 'vue', 'angular', 'next.js', 'svelte', 'typescript',
+      'javascript', 'nodejs', 'express', 'rest api', 'graphql',
+      'html5', 'css3', 'web framework', 'frontend'
+    ],
+    'Cloud': [
+      'aws', 'azure', 'gcp', 'cloud computing', 'serverless', 'docker',
+      'kubernetes', 'devops', 'cloud infrastructure', 'infrastructure as code'
+    ],
+    'Security': [
+      'cybersecurity', 'security', 'hacking', 'vulnerability', 'penetration',
+      'encryption', 'ssl', 'https', 'authentication', 'zero-day'
+    ],
+    'Database': [
+      'database', 'sql', 'nosql', 'mongodb', 'postgresql', 'mysql',
+      'redis', 'elasticsearch', 'data storage'
+    ],
+    'Mobile': [
+      'mobile', 'ios', 'android', 'react native', 'flutter', 'app development',
+      'iphone', 'smartphone'
+    ]
+  };
+
+  // Check for each category
+  for (const [tag, keywords] of Object.entries(aiKeywords)) {
+    if (keywords.some(keyword => textToAnalyze.includes(keyword))) {
+      detectedTags.push(tag);
+    }
+  }
+
+  return detectedTags;
+}
+
+/**
+ * Extract and clean tags from RSS item with intelligent tag detection
  * @param {Object} item - RSS item
  * @param {number} maxTags - Maximum number of tags
  * @returns {string[]} Array of tags
@@ -127,10 +182,16 @@ export function htmlToMarkdown(html) {
 export function extractTags(item, maxTags = 5) {
   const tags = [];
 
-  // From RSS categories
+  // From RSS categories (priority 1)
   if (item.categories && Array.isArray(item.categories)) {
     tags.push(...item.categories);
   }
+
+  // Auto-detect tags from content (priority 2)
+  const title = item.title || '';
+  const description = item.description || item.summary || '';
+  const contentTags = detectContentTags(title, description);
+  tags.push(...contentTags);
 
   // Clean and deduplicate
   const cleaned = [...new Set(tags)]
